@@ -18,6 +18,24 @@ body {
   background: linear-gradient(to bottom, transparent, #f5c85f, transparent);
 }
 
+.seccion-features{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding:50px 0;
+  margin-top: 50px;
+  background-color: #EEEEEE;
+
+}
+
+.feature{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 /* Media queries */
 @media only screen and (max-width: 600px) {
     .separator,
