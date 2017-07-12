@@ -86,20 +86,39 @@ body {
   background-image: url('assets/img/triangle.png');
   background-repeat: repeat-x;
   top:-12px;
-
 }
 
-.footer-section{
+.footer-section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  align-content: flex-end;
-  justify-content: center;
+  justify-content: space-around;
+  align-content: center;
+  padding: 10px 0;
   background-color: #f5c85f;
-  position: absolute;
-  bottom: 0;
-  left: 0;
+  color: white;
 }
+
+.subscribe {
+  height: 40px;
+  width: 100px;
+  margin: 25px 0;
+  color: white;
+  background-color: transparent;
+  border: 1px solid white;
+  border-radius: 10px;
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+.subscribe-input {
+  border: none;
+  border-radius: 10px;
+  height: 35px;
+  max-width: 300px;
+  width: 55%;
+}
+
 .feature{
   display: flex;
   flex-direction: column;
@@ -110,6 +129,7 @@ body {
   font-weight: bold;
   text-align: center;
 }
+
 .description{
   color: #999999;
   margin-top: -5px;
