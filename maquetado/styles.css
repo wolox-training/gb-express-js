@@ -1,27 +1,27 @@
-body{
+body {
   margin: 0;
 }
 
-.seccion-principal{
+.main-section {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  padding-top:50px;
-  border-top:8px solid;
-  border-color: #f5c85f;
-
+  padding-top: 50px;
+  border-top: 8px solid #f5c85f;
 }
-.separador{
-  width:3px;
+
+.separator {
+  width: 3px;
   height: 191px;
-  margin:0 30px;
-  background: linear-gradient(to bottom, transparent,#f5c85f,transparent);
+  margin: 0 30px;
+  background: linear-gradient(to bottom, transparent, #f5c85f, transparent);
 }
 
 /* Media queries */
 @media only screen and (max-width: 600px) {
-    .separador, .phone{
-        display:none;
+    .separator,
+    .phone {
+        display: none;
     }
 }
