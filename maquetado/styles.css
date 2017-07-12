@@ -61,15 +61,31 @@ body {
   color: #999;
 }
 
+.logo{
+  max-width: 308px;
+  width: 85%;
+}
+
 .seccion-features{
+  position: relative;
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
   flex-wrap: wrap;
-  padding:50px 0;
+  align-items: baseline;
+  justify-content: space-around;
+  align-content: center;
+  padding:50px 15px;
   margin-top: 50px;
   background-color: #EEEEEE;
+}
+
+.seccion-features::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 12px;
+  background-image: url('assets/img/triangle.png');
+  background-repeat: repeat-x;
+  top:-12px;
 
 }
 
@@ -78,13 +94,29 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  flex-basis: 300px;
+  color: #111111;
+  font-weight: bold;
+  text-align: center;
 }
+.description{
+  color: #999999;
+  margin-top: -5px;
+}
+
 /* Media queries */
 @media only screen and (max-width: 930px) {
+<<<<<<< d9be5c38140395f56ae85c0787c8efd3e9339d91
   .features-section {
     flex-direction: column;
     align-items: center;
   }
+=======
+    .seccion-features{
+        flex-direction: column;
+          align-items: center;
+    }
+>>>>>>> maquetado y estilo de seccion features desarrollado
 }
 
 @media only screen and (max-width: 600px) {
