@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  font-family: "Open Sans";
+  font-family: "Open Sans", sans-serif;
 }
 
 .main-section {
@@ -9,14 +9,14 @@ body {
   align-items: center;
   justify-content: center;
   padding-top: 50px;
-  border-top: 8px solid #f5c85f;
+  border-top: 8px solid #F5C85F;
 }
 
 .separator {
   width: 3px;
   height: 200px;
   margin: 0 30px;
-  background: linear-gradient(to bottom, transparent, #f5c85f, transparent);
+  background: linear-gradient(to bottom, transparent, #F5C85F, transparent);
 }
 
 .logo {
@@ -33,7 +33,7 @@ body {
   align-content: center;
   padding: 50px 15px;
   margin-top: 50px;
-  background-color: #EEEEEE;
+  background-color: #EEE;
 }
 
 .features-section::before {
@@ -52,14 +52,13 @@ body {
   align-items: center;
   justify-content: center;
   flex-basis: 300px;
-  color: #111111;
+  color: #111;
   font-weight: bold;
   text-align: center;
 }
 
 .description {
-  color: #999999;
-  margin-top: -5px;
+  color: #999;
 }
 
 /* Media queries */
