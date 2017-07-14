@@ -13,7 +13,7 @@ body {
 
 .separator {
   width: 3px;
-  height: 191px;
+  height: 200px;
   margin: 0 30px;
   background: linear-gradient(to bottom, transparent, #f5c85f, transparent);
 }
