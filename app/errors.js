@@ -10,3 +10,10 @@ exports.defaultError = (message) => {
     message
   };
 };
+
+exports.validationError = (message) => {
+  return {
+    statusCode: 400,
+    message
+  };
+};
