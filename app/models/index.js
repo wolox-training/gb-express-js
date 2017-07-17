@@ -1,5 +1,5 @@
 const user = require('./user');
 
 exports.define = (db) => {
-   user.getModel(db);
+  user.getModel(db);
 };
