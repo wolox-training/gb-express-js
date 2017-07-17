@@ -26,5 +26,5 @@ exports.getModel = (db) => {
       type: Sequelize.STRING,
       allowNull: false
     }
-  })
+  });
 };

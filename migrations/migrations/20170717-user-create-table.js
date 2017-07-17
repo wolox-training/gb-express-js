@@ -33,10 +33,9 @@ module.exports = {
         charset: 'latin1',                    // default: null
         schema: 'public'                      // default: public, PostgreSQL only.
       }
-    )
+    );
   },
-
   down: (queryInterface, Sequelize) => {
     queryInterface.dropTable('user');
   }
-}
+};
