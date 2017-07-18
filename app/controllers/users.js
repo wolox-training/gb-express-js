@@ -14,18 +14,26 @@ const validateEmail = (email) => {
 };
 
 const emailValidation = (email) => {
-  if (!validateEmail(email)) {
-    throw errors.validationError('The requested email is not a valid email');
-  } else if (email.indexOf('@wolox.com.ar') < 0) {
-    throw errors.validationError('The requested email is not a Wolox email');
+  if (email) {
+    if (!validateEmail(email)) {
+      throw errors.validationError('The requested email is not a valid email');
+    } else if (email.indexOf('@wolox.com.ar') < 0) {
+      throw errors.validationError('The requested email is not a Wolox email');
+    }
+  } else {
+    throw errors.validationError('The email is missing');
   }
 };
 
 const passwordValidation = (password) => {
-  if (!checkAlphanumeric(password)) {
-    throw errors.validationError('The password must be alphanumeric');
-  } else if (password.length < 8) {
-    throw errors.validationError('The password is too short');
+  if (password) {
+    if (!checkAlphanumeric(password)) {
+      throw errors.validationError('The password must be alphanumeric');
+    } else if (password.length < 8) {
+      throw errors.validationError('The password is too short');
+    }
+  } else {
+    throw errors.validationError('The password is missing');
   }
 };
 
@@ -33,6 +41,12 @@ exports.signup = (req, res, next) => {
   const newUser = req.body;
   emailValidation(newUser.email);
   passwordValidation(newUser.password);
+  if (!newUser.firstName) {
+    throw errors.validationError('The firstName is missing');
+  }
+  if (!newUser.lastName) {
+    throw errors.validationError('The lastName is missing');
+  }
   userService.create(newUser).then((createdUser) => {
     res.status(201);
     res.send(createdUser);

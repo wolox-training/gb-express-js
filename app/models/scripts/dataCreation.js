@@ -1,6 +1,3 @@
-
 exports.execute = (db) => {
-
-  // This function should create data for testing and return a promise
-
+  db.models.user.create({ firstName: 'test', lastName: 'wolox', password: '123456789', email: 'test@wolox.com.ar' }).then();
 };
