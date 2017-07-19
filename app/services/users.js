@@ -15,3 +15,9 @@ exports.create = (user) => {
     throw errors.defaultError(err);
   });
 };
+
+exports.getByEmail = (email) => {
+  return orm.models.user.findOne({ where: { email } }).catch((err) => {
+    throw errors.defaultError(err.detail);
+  });
+};

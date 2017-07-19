@@ -1,6 +1,8 @@
 'use strict';
 
 const userService = require('../services/users'),
+  sessionManager = require('../services/sessionManager'),
+  bcrypt = require('bcrypt'),
   errors = require('../errors');
 
 const checkAlphanumeric = (string) => {
@@ -50,6 +52,29 @@ exports.signup = (req, res, next) => {
   userService.create(newUser).then((createdUser) => {
     res.status(201);
     res.send(createdUser);
+  }).catch((err) => {
+    next(err);
+  });
+};
+
+exports.signin = (req, res, next) => {
+  const user = req.body ? req.body : {};
+  emailValidation(req.body.email);
+  userService.getByEmail(user.email).then((foundUser) => {
+    if (foundUser) {
+      bcrypt.compare(user.password, foundUser.password).then((match) => {
+        if (match) {
+          const token = sessionManager.encode({ username: foundUser.email });
+          res.status(200);
+          res.set(sessionManager.HEADER_NAME, token);
+          res.send(foundUser);
+        } else {
+          next(errors.defaultError('The password is incorrect'));
+        }
+      });
+    } else {
+      next(errors.defaultError('Requested email doesn\'t exist'));
+    }
   }).catch((err) => {
     next(err);
   });
