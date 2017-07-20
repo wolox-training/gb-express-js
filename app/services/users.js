@@ -6,10 +6,15 @@ const bcrypt = require('bcrypt'),
   saltRounds = 10;
 
 exports.create = (user) => {
-  return bcrypt.hash(user.password, saltRounds).then((hash) => {
-    user.password = hash;
-    return orm.models.user.create(user).catch((err) => {
-      throw errors.defaultError(err.message);
+  return bcrypt.genSalt(saltRounds).then((authenticationCode) => {
+    user.authenticationCode = authenticationCode;
+    return bcrypt.hash(user.password, saltRounds).then((hash) => {
+      user.password = hash;
+      return orm.models.user.create(user).catch((err) => {
+        throw errors.defaultError(err.detail);
+      });
+    }).catch((err) => {
+      throw errors.defaultError(err);
     });
   }).catch((err) => {
     throw errors.defaultError(err);
@@ -37,5 +42,11 @@ exports.signin = (user) => {
     }
   }).catch((err) => {
     throw errors.defaultError(err.message);
+  });
+};
+
+exports.update = (user, newData) => {
+  return user.update(newData).catch((err) => {
+    throw errors.defaultError(err.errors);
   });
 };

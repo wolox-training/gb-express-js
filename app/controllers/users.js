@@ -4,6 +4,7 @@ const userService = require('../services/users'),
   sessionManager = require('../services/sessionManager'),
   errors = require('../errors');
 
+const saltRounds = 10;
 const checkAlphanumeric = (string) => {
   const regex = /^[a-zA-Z0-9]*$/;
   return regex.test(string);
@@ -64,6 +65,18 @@ exports.signin = (req, res, next) => {
     res.status(200);
     res.set(sessionManager.HEADER_NAME, token);
     res.end();
+  }).catch((err) => {
+    next(err);
+  });
+};
+
+exports.signout = (req, res, next) => {
+  bcrypt.genSalt(saltRounds).then((authenticationCode) => {
+    userService.update(req.user, { authenticationCode }).then((updatedUser) => {
+      res.jsonp(updatedUser);
+    }).catch((err) => {
+      next(err);
+    });
   }).catch((err) => {
     next(err);
   });
