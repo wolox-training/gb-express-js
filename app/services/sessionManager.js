@@ -1,12 +1,10 @@
 const jwt = require('jwt-simple'),
-  bcrypt = require('bcrypt'),
   moment = require('moment'),
   config = require('./../../config');
 
 const SECRET = config.common.session.secret;
-const saltRouds = 10;
-const maxUsefulDays = 30;
-const expirationDate = 2;
+const maxUsefulDays = config.common.session.maxUsefulDays;
+const expirationDate = config.common.session.expirationDate;
 
 exports.HEADER_NAME = config.common.session.header_name;
 

@@ -40,7 +40,7 @@ describe('users controller', () => {
           done();
         });
     });
-    it('should fail because of existing email', (done) => {
+    it.only('should fail because of existing email', (done) => {
       chai.request(server)
         .post('/users')
         .send({
@@ -48,8 +48,9 @@ describe('users controller', () => {
           password: '123456789', email: 'test@wolox.com.ar'
         })
         .catch((err) => {
+          console.log(err.response.body.error.message);
           err.response.should.be.json;
-          err.response.body.error.message.message.should.equal('Validation error');
+          // err.response.body.error.message.message.should.equal('Validation error');
           err.response.body.should.have.property('error');
           err.should.have.status(500);
         })

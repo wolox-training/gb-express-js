@@ -72,12 +72,9 @@ exports.signin = (req, res, next) => {
 };
 
 exports.signout = (req, res, next) => {
-  bcrypt.genSalt(saltRounds).then((authenticationCode) => {
-    userService.update(req.user, { authenticationCode }).then((updatedUser) => {
-      res.jsonp(updatedUser);
-    }).catch((err) => {
-      next(err);
-    });
+  userService.signout(req.user).then((signedOutUser) => {
+    res.status(200);
+    res.end();
   }).catch((err) => {
     next(err);
   });

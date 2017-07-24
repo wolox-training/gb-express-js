@@ -3,7 +3,9 @@
 const bcrypt = require('bcrypt'),
   orm = require('./../orm'),
   errors = require('../errors'),
-  saltRounds = 10;
+  config = require('./../../config');
+
+const saltRounds = parseInt(config.common.bcrypt.saltRounds);
 
 exports.create = (user) => {
   return bcrypt.genSalt(saltRounds).then((authenticationCode) => {
@@ -13,8 +15,6 @@ exports.create = (user) => {
       return orm.models.user.create(user).catch((err) => {
         throw errors.defaultError(err.message);
       });
-    }).catch((err) => {
-      throw errors.defaultError(err);
     });
   }).catch((err) => {
     throw errors.defaultError(err);
@@ -48,5 +48,21 @@ exports.signin = (user) => {
 exports.update = (user, newData) => {
   return user.update(newData).catch((err) => {
     throw errors.defaultError(err.errors);
+  });
+};
+
+exports.getById = (id) => {
+  return orm.models.user.findOne({ where: { id } }).catch((err) => {
+    throw errors.defaultError(err.message);
+  });
+};
+
+exports.signout = (user) => {
+  return bcrypt.genSalt(saltRounds).then((authenticationCode) => {
+    return exports.update(user, { authenticationCode }).then((updatedUser) => {
+      return updatedUser;
+    });
+  }).catch((err) => {
+    throw errors.defaultError(err.message);
   });
 };

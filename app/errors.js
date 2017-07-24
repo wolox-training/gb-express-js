@@ -17,3 +17,10 @@ exports.validationError = (message) => {
     message
   };
 };
+
+exports.noAuthorizationError = (message) => {
+  return {
+    statusCode: 401,
+    message
+  };
+};
