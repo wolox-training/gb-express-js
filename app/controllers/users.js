@@ -2,7 +2,6 @@
 
 const userService = require('../services/users'),
   sessionManager = require('../services/sessionManager'),
-  bcrypt = require('bcrypt'),
   errors = require('../errors');
 
 const checkAlphanumeric = (string) => {
