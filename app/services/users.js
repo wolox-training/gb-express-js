@@ -9,7 +9,7 @@ exports.create = (user) => {
   return bcrypt.hash(user.password, saltRounds).then((hash) => {
     user.password = hash;
     return orm.models.user.create(user).catch((err) => {
-      throw errors.defaultError(err.detail);
+      throw errors.defaultError(err.message);
     });
   }).catch((err) => {
     throw errors.defaultError(err);
