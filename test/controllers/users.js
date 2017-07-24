@@ -1,10 +1,10 @@
 const chai = require('chai'),
   dictum = require('dictum.js'),
-  server = require('./../app'),
-  userService = require('../app/services/users'),
+  server = require('../../app'),
+  userService = require('../../app/services/users'),
   should = chai.should();
 
-describe('/users POST', () => {
+describe('users controller', () => {
   it('should fail because the password is too short', (done) => {
     chai.request(server)
       .post('/users')
@@ -68,45 +68,32 @@ describe('/users POST', () => {
       .then(() => done());
   });
   it('should be successful signing in', (done) => {
-    userService.create({
-      firstName: 'test',
-      lastName: 'wolox',
-      password: '123456789',
-      email: 'test1@wolox.com.ar'
-    }).then((response) => {
-      chai.request(server)
-        .post('/users/sessions')
-        .send({
-          password: '123456789', email: 'test1@wolox.com.ar'
-        })
-        .then((res) => {
-          res.should.have.status(200);
-          dictum.chai(res);
-        })
-        .then(() => done());
-    });
+    chai.request(server)
+      .post('/users/sessions')
+      .send({
+        password: '123456789', email: 'test@wolox.com.ar'
+      })
+      .then((res) => {
+        res.should.have.status(200);
+        dictum.chai(res);
+      })
+      .then(() => done());
   });
   it('should fail signing in because of incorrect password', (done) => {
-    userService.create({
-      firstName: 'test',
-      lastName: 'wolox',
-      password: '123456789',
-      email: 'test1@wolox.com.ar'
-    }).then((response) => {
-      chai.request(server)
-        .post('/users/sessions')
-        .send({
-          password: 'abcdefghijk', email: 'test1@wolox.com.ar'
-        })
-        .catch((err) => {
-          err.response.should.be.json;
-          err.response.body.should.have.property('error');
-          err.should.have.status(500);
-        })
-        .then(() => {
-          done();
-        });
-    });
+    chai.request(server)
+      .post('/users/sessions')
+      .send({
+        password: 'abcdefghijk', email: 'test@wolox.com.ar'
+      })
+      .catch((err) => {
+        err.response.should.be.json;
+        err.response.body.error.should.equal('The password is incorrect');
+        err.response.body.should.have.property('error');
+        err.should.have.status(500);
+      })
+      .then(() => {
+        done();
+      });
   });
 });
 

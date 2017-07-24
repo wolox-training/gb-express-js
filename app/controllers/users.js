@@ -60,21 +60,11 @@ exports.signup = (req, res, next) => {
 exports.signin = (req, res, next) => {
   const user = req.body ? req.body : {};
   emailValidation(req.body.email);
-  userService.getByEmail(user.email).then((foundUser) => {
-    if (foundUser) {
-      bcrypt.compare(user.password, foundUser.password).then((match) => {
-        if (match) {
-          const token = sessionManager.encode({ username: foundUser.email });
-          res.status(200);
-          res.set(sessionManager.HEADER_NAME, token);
-          res.send(foundUser);
-        } else {
-          next(errors.defaultError('The password is incorrect'));
-        }
-      });
-    } else {
-      next(errors.defaultError('Requested email doesn\'t exist'));
-    }
+  userService.signin(user).then((signedInUser) => {
+    const token = sessionManager.encode({ username: signedInUser.email });
+    res.status(200);
+    res.set(sessionManager.HEADER_NAME, token);
+    res.end();
   }).catch((err) => {
     next(err);
   });
