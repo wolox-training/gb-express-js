@@ -49,7 +49,7 @@ describe('users controller', () => {
         })
         .catch((err) => {
           err.response.should.be.json;
-          err.response.body.error.message.should.equal('Validation error');
+          err.response.body.error.message.message.should.equal('Validation error');
           err.response.body.should.have.property('error');
           err.should.have.status(500);
         })
