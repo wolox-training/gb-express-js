@@ -1,6 +1,7 @@
 'use strict';
 
 const userService = require('../services/users'),
+  sessionManager = require('../services/sessionManager'),
   errors = require('../errors');
 
 const checkAlphanumeric = (string) => {
@@ -50,6 +51,19 @@ exports.signup = (req, res, next) => {
   userService.create(newUser).then((createdUser) => {
     res.status(201);
     res.send(createdUser);
+  }).catch((err) => {
+    next(err);
+  });
+};
+
+exports.signin = (req, res, next) => {
+  const user = req.body ? req.body : {};
+  emailValidation(req.body.email);
+  userService.signin(user).then((signedInUser) => {
+    const token = sessionManager.encode({ username: signedInUser.email });
+    res.status(200);
+    res.set(sessionManager.HEADER_NAME, token);
+    res.end();
   }).catch((err) => {
     next(err);
   });

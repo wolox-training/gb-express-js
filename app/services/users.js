@@ -15,3 +15,27 @@ exports.create = (user) => {
     throw errors.defaultError(err);
   });
 };
+
+exports.getByEmail = (email) => {
+  return orm.models.user.findOne({ where: { email } }).catch((err) => {
+    throw errors.defaultError(err.message);
+  });
+};
+
+exports.signin = (user) => {
+  return exports.getByEmail(user.email).then((foundUser) => {
+    if (foundUser) {
+      return bcrypt.compare(user.password, foundUser.password).then((match) => {
+        if (match) {
+          return foundUser;
+        } else {
+          throw errors.validationError('The password is incorrect');
+        }
+      });
+    } else {
+      throw errors.validationError('Requested email doesn\'t exist');
+    }
+  }).catch((err) => {
+    throw errors.defaultError(err.message);
+  });
+};
