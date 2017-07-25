@@ -136,7 +136,7 @@ describe('users controller', () => {
         done(err);
       });
     });
-    it.only('should be successful getting a renewed id', (done) => {
+    it('should be successful getting a renewed id', (done) => {
       successfulLogin().then((res) => {
         chai.request(server)
           .post('/users/sessions/renew')
@@ -144,6 +144,7 @@ describe('users controller', () => {
           .send({ renew_id: res.headers.renewid })
           .then((response) => {
             response.should.be.status(200);
+            response.headers.renewid.should.not.be.equal(res.headers.renewid);
             dictum.chai(response);
           }).then(() => {
             done();

@@ -1,11 +1,40 @@
-<html><head><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" /><script src="https://code.jquery.com/jquery-1.12.2.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script><style> pre { width: 95%; } </style></head><body><div class="container"><div class="jumbotron"><h1>Users</h1></div><div class="panel panel-default"><div class="panel-heading" role="tab" id="heading-users-sessions-renew-POST"><h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="true" aria-controls="collapse-users-sessions-renew-POST" href="#collapse-users-sessions-renew-POST">POST /users/sessions/renew</a></h4></div><div id="collapse-users-sessions-renew-POST" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-users-sessions-renew-POST"><div class="panel-body"><h4>Request Data</h4><div class="container"><h5>Headers</h5><pre>{
-  "authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdXRoZW50aWNhdGlvbkNvZGUiOiIkMmEkMTAkRFVHTkVkbjloaXQ1ckJXV2QweWdLTyIsIm1heGltdW1Vc2VmdWxEYXRlIjoiMjAxNy0wOC0yNFQyMToyOTozMC44MTBaIiwiZXhwaXJhdGlvbkRhdGUiOiIyMDE3LTA3LTI3VDIxOjI5OjMwLjgxM1oiLCJpZCI6MSwicmVuZXdJZCI6IiQyYSQxMCR4WVRzWmI0dW9BZnVSRFoveDVCaHEuIn0.CQuKCU6a3e6evPlA7mDZ7CMrdujTTErLCFo7LEMJ2Z0",
+<html><head><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" /><script src="https://code.jquery.com/jquery-1.12.2.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script><style> pre { width: 95%; } </style></head><body><div class="container"><div class="jumbotron"><h1>Users</h1></div><div class="panel panel-default"><div class="panel-heading" role="tab" id="heading-users-POST"><h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="true" aria-controls="collapse-users-POST" href="#collapse-users-POST">POST /users</a></h4></div><div id="collapse-users-POST" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-users-POST"><div class="panel-body"><h4>Request Data</h4><div class="container"><h5>Headers</h5><pre>{
+  "content-type": "application/json",
+  "content-length": 92
+}</pre><h5>Body</h5><pre>{
+  "firstName": "aaaaa",
+  "lastName": "bbbbb",
+  "password": "123456789",
+  "email": "12345@wolox.com.ar"
+}</pre></div></div><div class="panel-body"><h4>Response Data</h4><div class="container"><h5>Status: 201</h5><h5>Headers</h5><pre>{
+  "content-type": "application/json",
+  "content-length": 92
+}</pre><h5>Body</h5><pre>{
+  "id": 5,
+  "firstName": "aaaaa",
+  "lastName": "bbbbb",
+  "password": "$2a$10$nV6VUIvHnd3D9hNTnNDYwO7AUY3yM40KYyfE9hJUyKHhP14xivviK",
+  "email": "12345@wolox.com.ar",
+  "authenticationCode": "$2a$10$oR5UEy43prJVS93qzKxjR.",
+  "updatedAt": "2017-07-26T19:09:19.756Z",
+  "createdAt": "2017-07-26T19:09:19.756Z"
+}</pre></div></div></div></div><div class="panel panel-default"><div class="panel-heading" role="tab" id="heading-users-sessions-POST"><h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="true" aria-controls="collapse-users-sessions-POST" href="#collapse-users-sessions-POST">POST /users/sessions</a></h4></div><div id="collapse-users-sessions-POST" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-users-sessions-POST"><div class="panel-body"><h4>Request Data</h4><div class="container"><h5>Headers</h5><pre>{
+  "content-type": "application/json",
+  "content-length": 52
+}</pre><h5>Body</h5><pre>{
+  "password": "123456789",
+  "email": "test@wolox.com.ar"
+}</pre></div></div><div class="panel-body"><h4>Response Data</h4><div class="container"><h5>Status: 200</h5><h5>Headers</h5><pre>{
+  "content-type": "application/json",
+  "content-length": 52
+}</pre><h5>Body</h5><pre>{}</pre></div></div></div></div><div class="panel panel-default"><div class="panel-heading" role="tab" id="heading-users-sessions-renew-POST"><h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="true" aria-controls="collapse-users-sessions-renew-POST" href="#collapse-users-sessions-renew-POST">POST /users/sessions/renew</a></h4></div><div id="collapse-users-sessions-renew-POST" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-users-sessions-renew-POST"><div class="panel-body"><h4>Request Data</h4><div class="container"><h5>Headers</h5><pre>{
+  "authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdXRoZW50aWNhdGlvbkNvZGUiOiIkMmEkMTAkZzg2b1o1eDBLWFoxTU1pRVhBY0IzLiIsIm1heGltdW1Vc2VmdWxEYXRlIjoiMjAxNy0wOC0yNVQxOTowOToyMS44NDlaIiwiZXhwaXJhdGlvbkRhdGUiOiIyMDE3LTA3LTI4VDE5OjA5OjIxLjg1MFoiLCJpZCI6MSwicmVuZXdJZCI6IiQyYSQxMCRHSU9VbEtaRjNzdUREaHpPLjI2UUNlIn0.kGXJQzQ8MHPRKiuh7QS0aFVDqvWeMBvQ-ZzgvMFHVfw",
   "content-type": "application/json",
   "content-length": 44
 }</pre><h5>Body</h5><pre>{
-  "renew_id": "$2a$10$xYTsZb4uoAfuRDZ/x5Bhq."
+  "renew_id": "$2a$10$GIOUlKZF3suDDhzO.26QCe"
 }</pre></div></div><div class="panel-body"><h4>Response Data</h4><div class="container"><h5>Status: 200</h5><h5>Headers</h5><pre>{
-  "authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdXRoZW50aWNhdGlvbkNvZGUiOiIkMmEkMTAkRFVHTkVkbjloaXQ1ckJXV2QweWdLTyIsIm1heGltdW1Vc2VmdWxEYXRlIjoiMjAxNy0wOC0yNFQyMToyOTozMC44MTBaIiwiZXhwaXJhdGlvbkRhdGUiOiIyMDE3LTA3LTI3VDIxOjI5OjMwLjgxM1oiLCJpZCI6MSwicmVuZXdJZCI6IiQyYSQxMCR4WVRzWmI0dW9BZnVSRFoveDVCaHEuIn0.CQuKCU6a3e6evPlA7mDZ7CMrdujTTErLCFo7LEMJ2Z0",
+  "authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdXRoZW50aWNhdGlvbkNvZGUiOiIkMmEkMTAkZzg2b1o1eDBLWFoxTU1pRVhBY0IzLiIsIm1heGltdW1Vc2VmdWxEYXRlIjoiMjAxNy0wOC0yNVQxOTowOToyMS44NDlaIiwiZXhwaXJhdGlvbkRhdGUiOiIyMDE3LTA3LTI4VDE5OjA5OjIxLjg1MFoiLCJpZCI6MSwicmVuZXdJZCI6IiQyYSQxMCRHSU9VbEtaRjNzdUREaHpPLjI2UUNlIn0.kGXJQzQ8MHPRKiuh7QS0aFVDqvWeMBvQ-ZzgvMFHVfw",
   "content-type": "application/json",
   "content-length": 44
 }</pre><h5>Body</h5><pre>{}</pre></div></div></div></div></div></body></html>

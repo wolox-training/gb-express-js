@@ -45,7 +45,7 @@ exports.signin = (user) => {
   });
 };
 
-exports.update = (user, newData) => {
+const update = (user, newData) => {
   return user.update(newData).catch((err) => {
     throw errors.defaultError(err.errors);
   });
@@ -59,7 +59,7 @@ exports.getById = (id) => {
 
 exports.signout = (user) => {
   return bcrypt.genSalt(saltRounds).then((authenticationCode) => {
-    return exports.update(user, { authenticationCode }).then((updatedUser) => {
+    return update(user, { authenticationCode }).then((updatedUser) => {
       return updatedUser;
     });
   }).catch((err) => {

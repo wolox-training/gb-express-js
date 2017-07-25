@@ -26,18 +26,23 @@ exports.decode = (toDecode) => {
   return jwt.decode(toDecode, SECRET);
 };
 
-exports.generateTokenAccess = (user) => {
+exports.generateTokenAccess = (user, maximumUsefulDate = getMaximumUsefulDate()) => {
+  const newExpirationDate = getExpirationDate();
   return bcrypt.genSalt(saltRounds).then((renewId) => {
     return {
       token: exports.encode({
         authenticationCode: user.authenticationCode,
-        maximumUsefulDate: getMaximumUsefulDate(),
-        expirationDate: getExpirationDate(),
+        maximumUsefulDate,
+        expirationDate: newExpirationDate,
         id: user.id,
         renewId
       }),
       renewId,
-      expirationDate: getExpirationDate()
+      expirationDate: newExpirationDate
     };
   });
+};
+
+exports.renewToken = (user, token) => {
+  return exports.generateTokenAccess(user, token.maximumUsefulDate);
 };

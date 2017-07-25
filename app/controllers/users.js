@@ -85,7 +85,7 @@ exports.renew = (req, res, next) => {
   const user = req.user;
   const token = req.token;
   if (req.body.renew_id === token.renewId) {
-    sessionManager.generateTokenAccess(user).then((tokenAccess) => {
+    sessionManager.renewToken(user, token).then((tokenAccess) => {
       res.status(200);
       res.set('renewId', tokenAccess.renewId);
       res.set('expirationDate', tokenAccess.expirationDate);
