@@ -85,9 +85,6 @@ exports.signout = (req, res, next) => {
 exports.renew = (req, res, next) => {
   const user = req.user;
   const token = req.token;
-  if (!req.body) {
-    next(errors.validationError('The renewId is missing'));
-  }
   if (req.body.renew_id === token.renewId) {
     res.status(200);
     res.send({ token });
