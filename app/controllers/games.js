@@ -20,3 +20,13 @@ exports.createGame = (req, res, next) => {
     next(err);
   });
 };
+
+exports.list = (req, res, next) => {
+  const limit = req.query.limit || 5;
+  const offset = req.query.offset || 0;
+  gameService.listAll(limit, offset).then((games) => {
+    res.jsonp(games);
+  }).catch((err) => {
+    next(err);
+  });
+};
