@@ -10,6 +10,7 @@ exports.isAuthenticated = (req, res, next) => {
     userService.getById(user.id).then((foundUser) => {
       if (foundUser && foundUser.authenticationCode === user.authenticationCode && moment().isBefore(user.expirationDate)
         && moment().isBefore(user.maximumUsefulDate)) {
+        req.token = user;
         req.user = foundUser;
         next();
       } else {

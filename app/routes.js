@@ -8,5 +8,5 @@ exports.init = (app) => {
   app.post('/users', [], users.signup);
   app.post('/users/sessions', [], users.signin);
   app.post('/users/sessions/signout', [auth.isAuthenticated], users.signout);
-
+  app.post('/users/sessions/renew', [auth.isAuthenticated], users.renew);
 };

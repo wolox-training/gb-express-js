@@ -1,10 +1,12 @@
 const jwt = require('jwt-simple'),
   moment = require('moment'),
+  bcrypt = require('bcrypt'),
   config = require('./../../config');
 
 const SECRET = config.common.session.secret;
-const maxUsefulDays = parseInt(config.common.session.maxUsefulDays);
-const expirationDate = parseInt(config.common.session.expirationDate);
+const maxUsefulDays = parseInt(config.common.session.maxUsefulDays) || 30;
+const expirationDate = parseInt(config.common.session.expirationDate) || 2;
+const saltRounds = parseInt(config.common.bcrypt.saltRounds) || 10;
 
 exports.HEADER_NAME = config.common.session.header_name;
 
@@ -25,10 +27,13 @@ exports.decode = (toDecode) => {
 };
 
 exports.generateTokenAccess = (user) => {
-  return exports.encode({
-    authenticationCode: user.authenticationCode,
-    maximumUsefulDate: getMaximumUsefulDate(),
-    expirationDate: getExpirationDate(),
-    id: user.id
+  return bcrypt.genSalt(saltRounds).then((renewId) => {
+    return exports.encode({
+      authenticationCode: user.authenticationCode,
+      maximumUsefulDate: getMaximumUsefulDate(),
+      expirationDate: getExpirationDate(),
+      id: user.id,
+      renewId
+    });
   });
 };

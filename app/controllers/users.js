@@ -3,6 +3,7 @@
 const userService = require('../services/users'),
   sessionManager = require('../services/sessionManager'),
   bcrypt = require('bcrypt'),
+  moment = require('moment'),
   errors = require('../errors');
 
 const saltRounds = 10;
@@ -62,10 +63,11 @@ exports.signin = (req, res, next) => {
   const user = req.body ? req.body : {};
   emailValidation(req.body.email);
   userService.signin(user).then((signedInUser) => {
-    const token = sessionManager.encode({ username: signedInUser.email });
-    res.status(200);
-    res.set(sessionManager.HEADER_NAME, token);
-    res.end();
+    sessionManager.generateTokenAccess(signedInUser).then((token) => {
+      res.status(200);
+      res.set(sessionManager.HEADER_NAME, token);
+      res.end();
+    });
   }).catch((err) => {
     next(err);
   });
@@ -78,4 +80,18 @@ exports.signout = (req, res, next) => {
   }).catch((err) => {
     next(err);
   });
+};
+
+exports.renew = (req, res, next) => {
+  const user = req.user;
+  const token = req.token;
+  if (!req.body) {
+    next(errors.validationError('The renewId is missing'));
+  }
+  if (req.body.renew_id === token.renewId) {
+    res.status(200);
+    res.send({ token });
+  } else {
+    next(errors.validationError('Invalid renewId'));
+  }
 };

@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt'),
   errors = require('../errors'),
   config = require('./../../config');
 
-const saltRounds = parseInt(config.common.bcrypt.saltRounds);
+const saltRounds = parseInt(config.common.bcrypt.saltRounds) || 10;
 
 exports.create = (user) => {
   return bcrypt.genSalt(saltRounds).then((authenticationCode) => {
