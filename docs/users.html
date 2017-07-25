@@ -13,11 +13,11 @@
   "id": 5,
   "firstName": "aaaaa",
   "lastName": "bbbbb",
-  "password": "$2a$10$nV6VUIvHnd3D9hNTnNDYwO7AUY3yM40KYyfE9hJUyKHhP14xivviK",
+  "password": "$2a$10$lEnIb2JnDNPxiB/VdKjZ9.Q0SJMDy0wMwLEqdplHGoguViH8Ccz8G",
   "email": "12345@wolox.com.ar",
-  "authenticationCode": "$2a$10$oR5UEy43prJVS93qzKxjR.",
-  "updatedAt": "2017-07-26T19:09:19.756Z",
-  "createdAt": "2017-07-26T19:09:19.756Z"
+  "authenticationCode": "$2a$10$S5UwZit5EzMX4FJCRAtcve",
+  "updatedAt": "2017-07-26T19:13:52.922Z",
+  "createdAt": "2017-07-26T19:13:52.922Z"
 }</pre></div></div></div></div><div class="panel panel-default"><div class="panel-heading" role="tab" id="heading-users-sessions-POST"><h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="true" aria-controls="collapse-users-sessions-POST" href="#collapse-users-sessions-POST">POST /users/sessions</a></h4></div><div id="collapse-users-sessions-POST" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-users-sessions-POST"><div class="panel-body"><h4>Request Data</h4><div class="container"><h5>Headers</h5><pre>{
   "content-type": "application/json",
   "content-length": 52
@@ -28,13 +28,93 @@
   "content-type": "application/json",
   "content-length": 52
 }</pre><h5>Body</h5><pre>{}</pre></div></div></div></div><div class="panel panel-default"><div class="panel-heading" role="tab" id="heading-users-sessions-renew-POST"><h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="true" aria-controls="collapse-users-sessions-renew-POST" href="#collapse-users-sessions-renew-POST">POST /users/sessions/renew</a></h4></div><div id="collapse-users-sessions-renew-POST" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-users-sessions-renew-POST"><div class="panel-body"><h4>Request Data</h4><div class="container"><h5>Headers</h5><pre>{
-  "authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdXRoZW50aWNhdGlvbkNvZGUiOiIkMmEkMTAkZzg2b1o1eDBLWFoxTU1pRVhBY0IzLiIsIm1heGltdW1Vc2VmdWxEYXRlIjoiMjAxNy0wOC0yNVQxOTowOToyMS44NDlaIiwiZXhwaXJhdGlvbkRhdGUiOiIyMDE3LTA3LTI4VDE5OjA5OjIxLjg1MFoiLCJpZCI6MSwicmVuZXdJZCI6IiQyYSQxMCRHSU9VbEtaRjNzdUREaHpPLjI2UUNlIn0.kGXJQzQ8MHPRKiuh7QS0aFVDqvWeMBvQ-ZzgvMFHVfw",
+  "authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdXRoZW50aWNhdGlvbkNvZGUiOiIkMmEkMTAkU1lOTHp1TUhDOG5ERmpsM21Oa0RxZSIsIm1heGltdW1Vc2VmdWxEYXRlIjoiMjAxNy0wOC0yNVQxOToxMzo1NC45ODFaIiwiZXhwaXJhdGlvbkRhdGUiOiIyMDE3LTA3LTI4VDE5OjEzOjU0Ljk4MloiLCJpZCI6MSwicmVuZXdJZCI6IiQyYSQxMCQ4M0Y2aUE0QkRDR3pDdlZrcW5ubkMuIn0.ApKfncM0SSBi5t5GbDr0jDOu_497Byu_pg2HedxHBlM",
   "content-type": "application/json",
   "content-length": 44
 }</pre><h5>Body</h5><pre>{
-  "renew_id": "$2a$10$GIOUlKZF3suDDhzO.26QCe"
+  "renew_id": "$2a$10$83F6iA4BDCGzCvVkqnnnC."
 }</pre></div></div><div class="panel-body"><h4>Response Data</h4><div class="container"><h5>Status: 200</h5><h5>Headers</h5><pre>{
-  "authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdXRoZW50aWNhdGlvbkNvZGUiOiIkMmEkMTAkZzg2b1o1eDBLWFoxTU1pRVhBY0IzLiIsIm1heGltdW1Vc2VmdWxEYXRlIjoiMjAxNy0wOC0yNVQxOTowOToyMS44NDlaIiwiZXhwaXJhdGlvbkRhdGUiOiIyMDE3LTA3LTI4VDE5OjA5OjIxLjg1MFoiLCJpZCI6MSwicmVuZXdJZCI6IiQyYSQxMCRHSU9VbEtaRjNzdUREaHpPLjI2UUNlIn0.kGXJQzQ8MHPRKiuh7QS0aFVDqvWeMBvQ-ZzgvMFHVfw",
+  "authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdXRoZW50aWNhdGlvbkNvZGUiOiIkMmEkMTAkU1lOTHp1TUhDOG5ERmpsM21Oa0RxZSIsIm1heGltdW1Vc2VmdWxEYXRlIjoiMjAxNy0wOC0yNVQxOToxMzo1NC45ODFaIiwiZXhwaXJhdGlvbkRhdGUiOiIyMDE3LTA3LTI4VDE5OjEzOjU0Ljk4MloiLCJpZCI6MSwicmVuZXdJZCI6IiQyYSQxMCQ4M0Y2aUE0QkRDR3pDdlZrcW5ubkMuIn0.ApKfncM0SSBi5t5GbDr0jDOu_497Byu_pg2HedxHBlM",
   "content-type": "application/json",
   "content-length": 44
-}</pre><h5>Body</h5><pre>{}</pre></div></div></div></div></div></body></html>
+}</pre><h5>Body</h5><pre>{}</pre></div></div></div></div><div class="panel panel-default"><div class="panel-heading" role="tab" id="heading-users--GET"><h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="true" aria-controls="collapse-users--GET" href="#collapse-users--GET">GET /users/</a></h4></div><div id="collapse-users--GET" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-users--GET"><div class="panel-body"><h4>Request Data</h4><div class="container"><h5>Headers</h5><pre>{
+  "authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdXRoZW50aWNhdGlvbkNvZGUiOiIkMmEkMTAkN3A5Z0NVNzVxeGFYbWdzWEtIc3hDZSIsIm1heGltdW1Vc2VmdWxEYXRlIjoiMjAxNy0wOC0yNVQxOToxMzo1NS40NjRaIiwiZXhwaXJhdGlvbkRhdGUiOiIyMDE3LTA3LTI4VDE5OjEzOjU1LjQ2NVoiLCJpZCI6MSwicmVuZXdJZCI6IiQyYSQxMCRYQUJBWnBrV1hhMG5xZTViR0dleXJlIn0.T_u4_jmiXhyoO2Z8FvS7uJBGipolsor2hNhd5UuOSu4"
+}</pre></div></div><div class="panel-body"><h4>Response Data</h4><div class="container"><h5>Status: 200</h5><h5>Headers</h5><pre>{
+  "authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdXRoZW50aWNhdGlvbkNvZGUiOiIkMmEkMTAkN3A5Z0NVNzVxeGFYbWdzWEtIc3hDZSIsIm1heGltdW1Vc2VmdWxEYXRlIjoiMjAxNy0wOC0yNVQxOToxMzo1NS40NjRaIiwiZXhwaXJhdGlvbkRhdGUiOiIyMDE3LTA3LTI4VDE5OjEzOjU1LjQ2NVoiLCJpZCI6MSwicmVuZXdJZCI6IiQyYSQxMCRYQUJBWnBrV1hhMG5xZTViR0dleXJlIn0.T_u4_jmiXhyoO2Z8FvS7uJBGipolsor2hNhd5UuOSu4"
+}</pre><h5>Body</h5><pre>[
+  {
+    "id": 1,
+    "firstName": "test",
+    "lastName": "wolox",
+    "email": "test@wolox.com.ar",
+    "password": "$2a$10$uuxLNmWBtcCqL7XjZysH.e23adI9wq75RPuTtXv3ymfcQARWor7ei",
+    "authenticationCode": "$2a$10$7p9gCU75qxaXmgsXKHsxCe",
+    "createdAt": "2017-07-26T19:13:55.227Z",
+    "updatedAt": "2017-07-26T19:13:55.227Z"
+  },
+  {
+    "id": 2,
+    "firstName": "2test2",
+    "lastName": "wolox2",
+    "email": "2test2@wolox.com.ar",
+    "password": "$2a$10$uuxLNmWBtcCqL7XjZysH.e23adI9wq75RPuTtXv3ymfcQARWor7ei",
+    "authenticationCode": "$2a$10$7p9gCU75qxaXmgsXKHsxCe",
+    "createdAt": "2017-07-26T19:13:55.227Z",
+    "updatedAt": "2017-07-26T19:13:55.227Z"
+  },
+  {
+    "id": 3,
+    "firstName": "4test4",
+    "lastName": "wolox4",
+    "email": "4test4@wolox.com.ar",
+    "password": "$2a$10$uuxLNmWBtcCqL7XjZysH.e23adI9wq75RPuTtXv3ymfcQARWor7ei",
+    "authenticationCode": "$2a$10$7p9gCU75qxaXmgsXKHsxCe",
+    "createdAt": "2017-07-26T19:13:55.229Z",
+    "updatedAt": "2017-07-26T19:13:55.229Z"
+  },
+  {
+    "id": 4,
+    "firstName": "3test3",
+    "lastName": "wolox3",
+    "email": "3test3@wolox.com.ar",
+    "password": "$2a$10$uuxLNmWBtcCqL7XjZysH.e23adI9wq75RPuTtXv3ymfcQARWor7ei",
+    "authenticationCode": "$2a$10$7p9gCU75qxaXmgsXKHsxCe",
+    "createdAt": "2017-07-26T19:13:55.228Z",
+    "updatedAt": "2017-07-26T19:13:55.228Z"
+  }
+]</pre></div></div></div></div><div class="panel panel-default"><div class="panel-heading" role="tab" id="heading-users-GET"><h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="true" aria-controls="collapse-users-GET" href="#collapse-users-GET">GET /users?limit=3</a></h4></div><div id="collapse-users-GET" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-users-GET"><div class="panel-body"><h4>Request Data</h4><div class="container"><h5>Headers</h5><pre>{
+  "authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdXRoZW50aWNhdGlvbkNvZGUiOiIkMmEkMTAkS0JiRWlBZktyZjUvS2tqVEJlQUZGLiIsIm1heGltdW1Vc2VmdWxEYXRlIjoiMjAxNy0wOC0yNVQxOToxMzo1NS44OTlaIiwiZXhwaXJhdGlvbkRhdGUiOiIyMDE3LTA3LTI4VDE5OjEzOjU1Ljg5OVoiLCJpZCI6MSwicmVuZXdJZCI6IiQyYSQxMCQvNTZMWlkweFNrNEdVNC8xNW1yR3RlIn0.j0GTvvfxwYekjFUYpXqisium-zcu53_6RROujKFCeeU"
+}</pre></div></div><div class="panel-body"><h4>Response Data</h4><div class="container"><h5>Status: 200</h5><h5>Headers</h5><pre>{
+  "authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdXRoZW50aWNhdGlvbkNvZGUiOiIkMmEkMTAkS0JiRWlBZktyZjUvS2tqVEJlQUZGLiIsIm1heGltdW1Vc2VmdWxEYXRlIjoiMjAxNy0wOC0yNVQxOToxMzo1NS44OTlaIiwiZXhwaXJhdGlvbkRhdGUiOiIyMDE3LTA3LTI4VDE5OjEzOjU1Ljg5OVoiLCJpZCI6MSwicmVuZXdJZCI6IiQyYSQxMCQvNTZMWlkweFNrNEdVNC8xNW1yR3RlIn0.j0GTvvfxwYekjFUYpXqisium-zcu53_6RROujKFCeeU"
+}</pre><h5>Body</h5><pre>[
+  {
+    "id": 1,
+    "firstName": "test",
+    "lastName": "wolox",
+    "email": "test@wolox.com.ar",
+    "password": "$2a$10$9emt1kEsz.fKwe2ZGieNM.P8wnFxQeaT3q5aEnSnnhTb4t7H9wW22",
+    "authenticationCode": "$2a$10$KBbEiAfKrf5/KkjTBeAFF.",
+    "createdAt": "2017-07-26T19:13:55.690Z",
+    "updatedAt": "2017-07-26T19:13:55.690Z"
+  },
+  {
+    "id": 2,
+    "firstName": "2test2",
+    "lastName": "wolox2",
+    "email": "2test2@wolox.com.ar",
+    "password": "$2a$10$9emt1kEsz.fKwe2ZGieNM.P8wnFxQeaT3q5aEnSnnhTb4t7H9wW22",
+    "authenticationCode": "$2a$10$KBbEiAfKrf5/KkjTBeAFF.",
+    "createdAt": "2017-07-26T19:13:55.690Z",
+    "updatedAt": "2017-07-26T19:13:55.690Z"
+  },
+  {
+    "id": 3,
+    "firstName": "3test3",
+    "lastName": "wolox3",
+    "email": "3test3@wolox.com.ar",
+    "password": "$2a$10$9emt1kEsz.fKwe2ZGieNM.P8wnFxQeaT3q5aEnSnnhTb4t7H9wW22",
+    "authenticationCode": "$2a$10$KBbEiAfKrf5/KkjTBeAFF.",
+    "createdAt": "2017-07-26T19:13:55.691Z",
+    "updatedAt": "2017-07-26T19:13:55.691Z"
+  }
+]</pre></div></div></div></div></div></body></html>

@@ -66,3 +66,9 @@ exports.signout = (user) => {
     throw errors.defaultError(err.message);
   });
 };
+
+exports.listAll = (limit, offset) => {
+  return orm.models.user.findAll({ limit, offset }).catch((err) => {
+    throw errors.defaultError(err.detail);
+  });
+};

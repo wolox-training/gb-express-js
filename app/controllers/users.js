@@ -96,3 +96,13 @@ exports.renew = (req, res, next) => {
     next(errors.validationError('Invalid renewId'));
   }
 };
+
+exports.list = (req, res, next) => {
+  const limit = req.query.limit || 5;
+  const offset = req.query.offset || 0;
+  userService.listAll(limit, offset).then((users) => {
+    res.jsonp(users);
+  }).catch((err) => {
+    next(err);
+  });
+};

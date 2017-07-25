@@ -1,8 +1,7 @@
 const chai = require('chai'),
   dictum = require('dictum.js'),
-  server = require('../../app'),
-  userService = require('../../app/services/users'),
-  sessionManager = require('../../app/services/sessionManager'),
+  server = require('./../../app'),
+  sessionManager = require('./../../app/services/sessionManager'),
   should = chai.should();
 
 const successfulLogin = (cb) => {
@@ -62,7 +61,7 @@ describe('users controller', () => {
         })
         .then(() => done());
     });
-    it('should be successful', (done) => {
+    it('should be successful signing up', (done) => {
       chai.request(server)
         .post('/users')
         .send({
@@ -154,5 +153,63 @@ describe('users controller', () => {
       });
     });
   });
+  describe('/users GET', () => {
+    it('should be successful getting the users list logged in', (done) => {
+      successfulLogin().then((res) => {
+        chai.request(server)
+          .get('/users/')
+          .set(sessionManager.HEADER_NAME, res.headers.authorization)
+          .send()
+          .then((response) => {
+            response.should.have.status(200);
+            response.body.should.be.a('array');
+            dictum.chai(response);
+          })
+          .then(() => {
+            done();
+          });
+      }).catch((err) => {
+        done(err);
+      });
+    });
+    it('should be successful getting the list with 3 users', (done) => {
+      successfulLogin().then((res) => {
+        chai.request(server)
+          .get('/users?limit=3')
+          .set(sessionManager.HEADER_NAME, res.headers.authorization)
+          .send()
+          .then((response) => {
+            response.should.have.status(200);
+            response.body.should.be.a('array');
+            response.body.should.have.lengthOf(3);
+            dictum.chai(response);
+          })
+          .then(() => {
+            done();
+          });
+      }).catch((err) => {
+        done(err);
+      });
+    });
+    it('should fail because of missing auth token', (done) => {
+      successfulLogin().then((res) => {
+        chai.request(server)
+          .get('/users/')
+          .send()
+          .catch((err) => {
+            err.response.should.be.json;
+            err.response.body.should.have.property('error');
+            err.response.body.error.should.equal('User is not logged in');
+            err.should.have.status(401);
+          })
+          .then((response) => {
+            done();
+          });
+      }).catch((err) => {
+        done(err);
+      });
+    });
+  });
+
 });
 
