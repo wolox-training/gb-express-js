@@ -28,12 +28,16 @@ exports.decode = (toDecode) => {
 
 exports.generateTokenAccess = (user) => {
   return bcrypt.genSalt(saltRounds).then((renewId) => {
-    return exports.encode({
-      authenticationCode: user.authenticationCode,
-      maximumUsefulDate: getMaximumUsefulDate(),
-      expirationDate: getExpirationDate(),
-      id: user.id,
-      renewId
-    });
+    return {
+      token: exports.encode({
+        authenticationCode: user.authenticationCode,
+        maximumUsefulDate: getMaximumUsefulDate(),
+        expirationDate: getExpirationDate(),
+        id: user.id,
+        renewId
+      }),
+      renewId,
+      expirationDate: getExpirationDate()
+    };
   });
 };

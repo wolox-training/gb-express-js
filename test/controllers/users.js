@@ -136,6 +136,22 @@ describe('users controller', () => {
         done(err);
       });
     });
+    it.only('should be successful getting a renewed id', (done) => {
+      successfulLogin().then((res) => {
+        chai.request(server)
+          .post('/users/sessions/renew')
+          .set(sessionManager.HEADER_NAME, res.headers.authorization)
+          .send({ renew_id: res.headers.renewid })
+          .then((response) => {
+            response.should.be.status(200);
+            dictum.chai(response);
+          }).then(() => {
+            done();
+          });
+      }).catch((err) => {
+        done(err);
+      });
+    });
   });
 });
 

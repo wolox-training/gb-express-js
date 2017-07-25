@@ -6,11 +6,12 @@ const errors = require('../errors'),
 exports.isAuthenticated = (req, res, next) => {
   const usersToken = req.headers[sessionManager.HEADER_NAME];
   if (usersToken) {
-    const user = sessionManager.decode(usersToken);
-    userService.getById(user.id).then((foundUser) => {
-      if (foundUser && foundUser.authenticationCode === user.authenticationCode && moment().isBefore(user.expirationDate)
-        && moment().isBefore(user.maximumUsefulDate)) {
-        req.token = user;
+    const tokenPayload = sessionManager.decode(usersToken);
+    userService.getById(tokenPayload.id).then((foundUser) => {
+      if (foundUser && foundUser.authenticationCode === tokenPayload.authenticationCode
+        && moment().isBefore(tokenPayload.expirationDate)
+        && moment().isBefore(tokenPayload.maximumUsefulDate)) {
+        req.token = tokenPayload;
         req.user = foundUser;
         next();
       } else {

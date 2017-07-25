@@ -2,11 +2,8 @@
 
 const userService = require('../services/users'),
   sessionManager = require('../services/sessionManager'),
-  bcrypt = require('bcrypt'),
-  moment = require('moment'),
   errors = require('../errors');
 
-const saltRounds = 10;
 const checkAlphanumeric = (string) => {
   const regex = /^[a-zA-Z0-9]*$/;
   return regex.test(string);
@@ -63,9 +60,11 @@ exports.signin = (req, res, next) => {
   const user = req.body ? req.body : {};
   emailValidation(req.body.email);
   userService.signin(user).then((signedInUser) => {
-    sessionManager.generateTokenAccess(signedInUser).then((token) => {
+    sessionManager.generateTokenAccess(signedInUser).then((tokenAccess) => {
       res.status(200);
-      res.set(sessionManager.HEADER_NAME, token);
+      res.set('renewId', tokenAccess.renewId);
+      res.set('expirationDate', tokenAccess.expirationDate);
+      res.set(sessionManager.HEADER_NAME, tokenAccess.token);
       res.end();
     });
   }).catch((err) => {
@@ -86,8 +85,13 @@ exports.renew = (req, res, next) => {
   const user = req.user;
   const token = req.token;
   if (req.body.renew_id === token.renewId) {
-    res.status(200);
-    res.send({ token });
+    sessionManager.generateTokenAccess(user).then((tokenAccess) => {
+      res.status(200);
+      res.set('renewId', tokenAccess.renewId);
+      res.set('expirationDate', tokenAccess.expirationDate);
+      res.set(sessionManager.HEADER_NAME, tokenAccess.token);
+      res.end();
+    });
   } else {
     next(errors.validationError('Invalid renewId'));
   }
