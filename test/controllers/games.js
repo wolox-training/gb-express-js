@@ -137,4 +137,56 @@ describe('games controller', () => {
       });
     });
   });
+  describe('/games/:gameId/match POST', () => {
+    it('should fail because of missing assertions attribute', (done) => {
+      utils.successfulLogin().then((res) => {
+        chai.request(server)
+          .post('/games/2/match')
+          .set(sessionManager.HEADER_NAME, res.headers.authorization)
+          .send()
+          .catch((err) => {
+            err.response.should.be.json;
+            err.response.body.should.have.property('error');
+            err.response.body.error.should.equal('Assertions value is missing');
+            err.should.have.status(400);
+          })
+          .then((response) => {
+            done();
+          });
+      }).catch((err) => {
+        done(err);
+      });
+    });
+    it('should fail because of not being authenticated', (done) => {
+      chai.request(server)
+        .post('/games/2/match')
+        .send()
+        .catch((err) => {
+          err.response.should.be.json;
+          err.response.body.should.have.property('error');
+          err.response.body.error.should.equal('User is not logged in');
+          err.should.have.status(401);
+        })
+        .then((response) => {
+          done();
+        });
+    });
+    it('should be successful creating a new match', (done) => {
+      utils.successfulLogin().then((res) => {
+        chai.request(server)
+          .post('/games/2/match')
+          .set(sessionManager.HEADER_NAME, res.headers.authorization)
+          .send({
+            assertions: '7'
+          })
+          .then((response) => {
+            response.should.have.status(200);
+            dictum.chai(response);
+          })
+          .then(() => {
+            done();
+          });
+      });
+    });
+  });
 });
