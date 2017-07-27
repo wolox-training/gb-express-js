@@ -1,5 +1,3 @@
-'use strict';
-
 const orm = require('./../orm'),
   errors = require('../errors');
 

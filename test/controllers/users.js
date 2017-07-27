@@ -2,7 +2,7 @@ const chai = require('chai'),
   dictum = require('dictum.js'),
   server = require('./../../app'),
   sessionManager = require('./../../app/services/sessionManager'),
-  utils = require('./../utils'),
+  { successfulLogin, successfulLoginNotAdmin } = require('./../utils'),
   should = chai.should();
 
 describe('users controller', () => {
@@ -114,7 +114,7 @@ describe('users controller', () => {
         });
     });
     it('should fail because renew_id is not being sent', (done) => {
-      utils.successfulLogin().then((res) => {
+      successfulLogin().then((res) => {
         chai.request(server)
           .post('/users/sessions/renew')
           .set(sessionManager.HEADER_NAME, res.headers.authorization)
@@ -131,7 +131,7 @@ describe('users controller', () => {
       });
     });
     it('should be successful getting a renewed id', (done) => {
-      utils.successfulLogin().then((res) => {
+      successfulLogin().then((res) => {
         chai.request(server)
           .post('/users/sessions/renew')
           .set(sessionManager.HEADER_NAME, res.headers.authorization)
@@ -150,7 +150,7 @@ describe('users controller', () => {
   });
   describe('/users GET', () => {
     it('should be successful getting the users list logged in', (done) => {
-      utils.successfulLogin().then((res) => {
+      successfulLogin().then((res) => {
         chai.request(server)
           .get('/users/')
           .set(sessionManager.HEADER_NAME, res.headers.authorization)
@@ -168,7 +168,7 @@ describe('users controller', () => {
       });
     });
     it('should be successful getting the list with 3 users', (done) => {
-      utils.successfulLogin().then((res) => {
+      successfulLogin().then((res) => {
         chai.request(server)
           .get('/users?limit=3')
           .set(sessionManager.HEADER_NAME, res.headers.authorization)
@@ -187,7 +187,7 @@ describe('users controller', () => {
       });
     });
     it('should fail because of missing auth token', (done) => {
-      utils.successfulLogin().then((res) => {
+      successfulLogin().then((res) => {
         chai.request(server)
           .get('/users/')
           .send()
@@ -207,7 +207,7 @@ describe('users controller', () => {
   });
   describe('/admin/users POST', () => {
     it('should fail because the user is not an admin', (done) => {
-      utils.successfulLoginNotAdmin().then((res) => {
+      successfulLoginNotAdmin().then((res) => {
         chai.request(server)
           .post('/admin/users/')
           .set(sessionManager.HEADER_NAME, res.headers.authorization)
@@ -229,7 +229,7 @@ describe('users controller', () => {
       });
     });
     it('should be successful creating a new admin', (done) => {
-      utils.successfulLogin().then((res) => {
+      successfulLogin().then((res) => {
         chai.request(server)
           .post('/admin/users/')
           .set(sessionManager.HEADER_NAME, res.headers.authorization)

@@ -1,15 +1,14 @@
 const chai = require('chai'),
   dictum = require('dictum.js'),
   server = require('./../../app'),
-  gameService = require('./../../app/services/games'),
   sessionManager = require('./../../app/services/sessionManager'),
-  utils = require('./../utils'),
+  { successfulLogin, successfulLoginNotAdmin } = require('./../utils'),
   should = chai.should();
 
 describe('games controller', () => {
   describe('/games POST', () => {
     it('should fail because user is not admin', (done) => {
-      utils.successfulLoginNotAdmin().then((res) => {
+      successfulLoginNotAdmin().then((res) => {
         chai.request(server)
           .post('/games')
           .set(sessionManager.HEADER_NAME, res.headers.authorization)
@@ -28,7 +27,7 @@ describe('games controller', () => {
       });
     });
     it('should fail because something is missing', (done) => {
-      utils.successfulLogin().then((res) => {
+      successfulLogin().then((res) => {
         chai.request(server)
           .post('/games')
           .set(sessionManager.HEADER_NAME, res.headers.authorization)
@@ -47,7 +46,7 @@ describe('games controller', () => {
       });
     });
     it('should be successful creating a new game', (done) => {
-      utils.successfulLogin().then((res) => {
+      successfulLogin().then((res) => {
         chai.request(server)
           .post('/games')
           .set(sessionManager.HEADER_NAME, res.headers.authorization)
