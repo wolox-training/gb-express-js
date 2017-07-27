@@ -2,18 +2,8 @@ const chai = require('chai'),
   dictum = require('dictum.js'),
   server = require('./../../app'),
   sessionManager = require('./../../app/services/sessionManager'),
+  { successfulLogin, successfulLoginNotAdmin } = require('./../utils'),
   should = chai.should();
-
-const successfulLogin = (cb) => {
-  return chai.request(server)
-    .post('/users/sessions')
-    .send({ email: 'test@wolox.com.ar', password: '123456789' });
-};
-const successfulLoginNotAdmin = (cb) => {
-  return chai.request(server)
-    .post('/users/sessions')
-    .send({ email: '2test2@wolox.com.ar', password: '123456789' });
-};
 
 describe('users controller', () => {
   describe('/users POST', () => {
