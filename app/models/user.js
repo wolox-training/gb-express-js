@@ -25,6 +25,10 @@ exports.getModel = (db) => {
     password: {
       type: Sequelize.STRING,
       allowNull: false
+    },
+    authenticationCode: {
+      type: Sequelize.STRING,
+      allowNull: false
     }
   });
 };

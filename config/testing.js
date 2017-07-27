@@ -16,10 +16,15 @@ exports.config = {
     },
     session: {
       header_name: 'authorization',
-      secret: process.env.NODE_API_SESSION_SECRET
+      secret: process.env.NODE_API_SESSION_SECRET,
+      maxUsefulDays: process.env.MAX_USEFUL_DAYS,
+      expirationDate: process.env.EXPIRATION_DATE
     },
     rollbar: {
       accessToken: process.env.ROLLBAR_ACCESS_TOKEN
+    },
+    bcrypt: {
+      saltRounds: process.env.SALT_ROUNDS
     }
   }
 };

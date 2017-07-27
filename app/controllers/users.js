@@ -60,11 +60,39 @@ exports.signin = (req, res, next) => {
   const user = req.body ? req.body : {};
   emailValidation(req.body.email);
   userService.signin(user).then((signedInUser) => {
-    const token = sessionManager.encode({ username: signedInUser.email });
+    sessionManager.generateTokenAccess(signedInUser).then((tokenAccess) => {
+      res.status(200);
+      res.set('renewId', tokenAccess.renewId);
+      res.set('expirationDate', tokenAccess.expirationDate);
+      res.set(sessionManager.HEADER_NAME, tokenAccess.token);
+      res.end();
+    });
+  }).catch((err) => {
+    next(err);
+  });
+};
+
+exports.signout = (req, res, next) => {
+  userService.signout(req.user).then((signedOutUser) => {
     res.status(200);
-    res.set(sessionManager.HEADER_NAME, token);
     res.end();
   }).catch((err) => {
     next(err);
   });
+};
+
+exports.renew = (req, res, next) => {
+  const user = req.user;
+  const token = req.token;
+  if (req.body.renew_id === token.renewId) {
+    sessionManager.renewToken(user, token).then((tokenAccess) => {
+      res.status(200);
+      res.set('renewId', tokenAccess.renewId);
+      res.set('expirationDate', tokenAccess.expirationDate);
+      res.set(sessionManager.HEADER_NAME, tokenAccess.token);
+      res.end();
+    });
+  } else {
+    next(errors.validationError('Invalid renewId'));
+  }
 };

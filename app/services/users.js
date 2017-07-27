@@ -3,13 +3,18 @@
 const bcrypt = require('bcrypt'),
   orm = require('./../orm'),
   errors = require('../errors'),
-  saltRounds = 10;
+  config = require('./../../config');
+
+const saltRounds = parseInt(config.common.bcrypt.saltRounds) || 10;
 
 exports.create = (user) => {
-  return bcrypt.hash(user.password, saltRounds).then((hash) => {
-    user.password = hash;
-    return orm.models.user.create(user).catch((err) => {
-      throw errors.defaultError(err.message);
+  return bcrypt.genSalt(saltRounds).then((authenticationCode) => {
+    user.authenticationCode = authenticationCode;
+    return bcrypt.hash(user.password, saltRounds).then((hash) => {
+      user.password = hash;
+      return orm.models.user.create(user).catch((err) => {
+        throw errors.defaultError(err.message);
+      });
     });
   }).catch((err) => {
     throw errors.defaultError(err);
@@ -35,6 +40,28 @@ exports.signin = (user) => {
     } else {
       throw errors.validationError('Requested email doesn\'t exist');
     }
+  }).catch((err) => {
+    throw errors.defaultError(err.message);
+  });
+};
+
+const update = (user, newData) => {
+  return user.update(newData).catch((err) => {
+    throw errors.defaultError(err.errors);
+  });
+};
+
+exports.getById = (id) => {
+  return orm.models.user.findOne({ where: { id } }).catch((err) => {
+    throw errors.defaultError(err.message);
+  });
+};
+
+exports.signout = (user) => {
+  return bcrypt.genSalt(saltRounds).then((authenticationCode) => {
+    return update(user, { authenticationCode }).then((updatedUser) => {
+      return updatedUser;
+    });
   }).catch((err) => {
     throw errors.defaultError(err.message);
   });

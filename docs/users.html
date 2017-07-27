@@ -10,13 +10,14 @@
   "content-type": "application/json",
   "content-length": 92
 }</pre><h5>Body</h5><pre>{
-  "id": 2,
+  "id": 5,
   "firstName": "aaaaa",
   "lastName": "bbbbb",
-  "password": "$2a$10$U.d8HnrtIE9gCwPlLtuT..gjvDrap0GBogqWVJ4yumOVVoVJw4nyW",
+  "password": "$2a$10$nV6VUIvHnd3D9hNTnNDYwO7AUY3yM40KYyfE9hJUyKHhP14xivviK",
   "email": "12345@wolox.com.ar",
-  "updatedAt": "2017-07-24T14:57:40.444Z",
-  "createdAt": "2017-07-24T14:57:40.444Z"
+  "authenticationCode": "$2a$10$oR5UEy43prJVS93qzKxjR.",
+  "updatedAt": "2017-07-26T19:09:19.756Z",
+  "createdAt": "2017-07-26T19:09:19.756Z"
 }</pre></div></div></div></div><div class="panel panel-default"><div class="panel-heading" role="tab" id="heading-users-sessions-POST"><h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="true" aria-controls="collapse-users-sessions-POST" href="#collapse-users-sessions-POST">POST /users/sessions</a></h4></div><div id="collapse-users-sessions-POST" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-users-sessions-POST"><div class="panel-body"><h4>Request Data</h4><div class="container"><h5>Headers</h5><pre>{
   "content-type": "application/json",
   "content-length": 52
@@ -26,4 +27,14 @@
 }</pre></div></div><div class="panel-body"><h4>Response Data</h4><div class="container"><h5>Status: 200</h5><h5>Headers</h5><pre>{
   "content-type": "application/json",
   "content-length": 52
+}</pre><h5>Body</h5><pre>{}</pre></div></div></div></div><div class="panel panel-default"><div class="panel-heading" role="tab" id="heading-users-sessions-renew-POST"><h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="true" aria-controls="collapse-users-sessions-renew-POST" href="#collapse-users-sessions-renew-POST">POST /users/sessions/renew</a></h4></div><div id="collapse-users-sessions-renew-POST" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-users-sessions-renew-POST"><div class="panel-body"><h4>Request Data</h4><div class="container"><h5>Headers</h5><pre>{
+  "authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdXRoZW50aWNhdGlvbkNvZGUiOiIkMmEkMTAkZzg2b1o1eDBLWFoxTU1pRVhBY0IzLiIsIm1heGltdW1Vc2VmdWxEYXRlIjoiMjAxNy0wOC0yNVQxOTowOToyMS44NDlaIiwiZXhwaXJhdGlvbkRhdGUiOiIyMDE3LTA3LTI4VDE5OjA5OjIxLjg1MFoiLCJpZCI6MSwicmVuZXdJZCI6IiQyYSQxMCRHSU9VbEtaRjNzdUREaHpPLjI2UUNlIn0.kGXJQzQ8MHPRKiuh7QS0aFVDqvWeMBvQ-ZzgvMFHVfw",
+  "content-type": "application/json",
+  "content-length": 44
+}</pre><h5>Body</h5><pre>{
+  "renew_id": "$2a$10$GIOUlKZF3suDDhzO.26QCe"
+}</pre></div></div><div class="panel-body"><h4>Response Data</h4><div class="container"><h5>Status: 200</h5><h5>Headers</h5><pre>{
+  "authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdXRoZW50aWNhdGlvbkNvZGUiOiIkMmEkMTAkZzg2b1o1eDBLWFoxTU1pRVhBY0IzLiIsIm1heGltdW1Vc2VmdWxEYXRlIjoiMjAxNy0wOC0yNVQxOTowOToyMS44NDlaIiwiZXhwaXJhdGlvbkRhdGUiOiIyMDE3LTA3LTI4VDE5OjA5OjIxLjg1MFoiLCJpZCI6MSwicmVuZXdJZCI6IiQyYSQxMCRHSU9VbEtaRjNzdUREaHpPLjI2UUNlIn0.kGXJQzQ8MHPRKiuh7QS0aFVDqvWeMBvQ-ZzgvMFHVfw",
+  "content-type": "application/json",
+  "content-length": 44
 }</pre><h5>Body</h5><pre>{}</pre></div></div></div></div></div></body></html>

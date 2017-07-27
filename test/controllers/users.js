@@ -2,7 +2,14 @@ const chai = require('chai'),
   dictum = require('dictum.js'),
   server = require('../../app'),
   userService = require('../../app/services/users'),
+  sessionManager = require('../../app/services/sessionManager'),
   should = chai.should();
+
+const successfulLogin = (cb) => {
+  return chai.request(server)
+    .post('/users/sessions')
+    .send({ email: 'test@wolox.com.ar', password: '123456789' });
+};
 
 describe('users controller', () => {
   describe('/users POST', () => {
@@ -49,7 +56,7 @@ describe('users controller', () => {
         })
         .catch((err) => {
           err.response.should.be.json;
-          err.response.body.error.message.should.equal('Validation error');
+          err.response.body.error.should.equal('Validation error');
           err.response.body.should.have.property('error');
           err.should.have.status(500);
         })
@@ -97,6 +104,54 @@ describe('users controller', () => {
         .then(() => {
           done();
         });
+    });
+  });
+  describe('/users/sessions/renew POST', () => {
+    it('should fail because header is not being sent', (done) => {
+      chai.request(server)
+        .post('/users/sessions/renew')
+        .send()
+        .catch((err) => {
+          err.response.should.be.json;
+          err.response.body.error.should.equal('User is not logged in');
+          err.should.have.status(401);
+        }).then(() => {
+          done();
+        });
+    });
+    it('should fail because renew_id is not being sent', (done) => {
+      successfulLogin().then((res) => {
+        chai.request(server)
+          .post('/users/sessions/renew')
+          .set(sessionManager.HEADER_NAME, res.headers.authorization)
+          .send()
+          .catch((err) => {
+            err.response.body.error.should.equal('Invalid renewId');
+            err.response.should.be.json;
+            err.should.have.status(400);
+          }).then(() => {
+            done();
+          });
+      }).catch((err) => {
+        done(err);
+      });
+    });
+    it('should be successful getting a renewed id', (done) => {
+      successfulLogin().then((res) => {
+        chai.request(server)
+          .post('/users/sessions/renew')
+          .set(sessionManager.HEADER_NAME, res.headers.authorization)
+          .send({ renew_id: res.headers.renewid })
+          .then((response) => {
+            response.should.be.status(200);
+            response.headers.renewid.should.not.be.equal(res.headers.renewid);
+            dictum.chai(response);
+          }).then(() => {
+            done();
+          });
+      }).catch((err) => {
+        done(err);
+      });
     });
   });
 });
