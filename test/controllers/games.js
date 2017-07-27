@@ -171,7 +171,7 @@ describe('games controller', () => {
           done();
         });
     });
-    it.only('should be successful creating a new match', (done) => {
+    it('should be successful creating a new match', (done) => {
       successfulLogin().then((res) => {
         chai.request(server)
           .post('/games/2/match')
@@ -223,8 +223,6 @@ describe('games controller', () => {
           })
           .then(() => {
             done();
-          }).catch((err) => {
-            done(err);
           });
       }).catch((err) => {
         done(err);
