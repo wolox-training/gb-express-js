@@ -24,3 +24,11 @@ exports.isAuthenticated = (req, res, next) => {
     next(errors.noAuthorizationError('User is not logged in'));
   }
 };
+
+exports.isAdmin = (req, res, next) => {
+  if (req.user.isAdmin) {
+    next();
+  } else {
+    next(errors.noAuthorizationError('User is not allowed'));
+  }
+};

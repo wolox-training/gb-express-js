@@ -29,6 +29,11 @@ exports.getModel = (db) => {
     authenticationCode: {
       type: Sequelize.STRING,
       allowNull: false
+    },
+    isAdmin: {
+      type: Sequelize.BOOLEAN,
+      defaultValue: false,
+      allowNull: false
     }
   });
 };

@@ -21,14 +21,14 @@ exports.create = (user) => {
   });
 };
 
-exports.getByEmail = (email) => {
+const getByEmail = (email) => {
   return orm.models.user.findOne({ where: { email } }).catch((err) => {
     throw errors.defaultError(err.message);
   });
 };
 
 exports.signin = (user) => {
-  return exports.getByEmail(user.email).then((foundUser) => {
+  return getByEmail(user.email).then((foundUser) => {
     if (foundUser) {
       return bcrypt.compare(user.password, foundUser.password).then((match) => {
         if (match) {
@@ -70,5 +70,18 @@ exports.signout = (user) => {
 exports.listAll = (limit, offset) => {
   return orm.models.user.findAll({ limit, offset }).catch((err) => {
     throw errors.defaultError(err.detail);
+  });
+};
+
+exports.createOrUpdate = (user, newData) => {
+  return getByEmail(user.email).then((foundUser) => {
+    if (foundUser) {
+      return update(foundUser, newData);
+    } else {
+      Object.assign(user, newData);
+      return exports.create(user);
+    }
+  }).catch((err) => {
+    throw errors.defaultError(err.message);
   });
 };

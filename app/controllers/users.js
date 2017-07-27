@@ -38,16 +38,20 @@ const passwordValidation = (password) => {
   }
 };
 
-exports.signup = (req, res, next) => {
-  const newUser = req.body;
-  emailValidation(newUser.email);
-  passwordValidation(newUser.password);
-  if (!newUser.firstName) {
+const userValidation = (user) => {
+  emailValidation(user.email);
+  passwordValidation(user.password);
+  if (!user.firstName) {
     throw errors.validationError('The firstName is missing');
   }
-  if (!newUser.lastName) {
+  if (!user.lastName) {
     throw errors.validationError('The lastName is missing');
   }
+};
+
+exports.signup = (req, res, next) => {
+  const newUser = req.body;
+  userValidation(newUser);
   userService.create(newUser).then((createdUser) => {
     res.status(201);
     res.send(createdUser);
@@ -58,7 +62,7 @@ exports.signup = (req, res, next) => {
 
 exports.signin = (req, res, next) => {
   const user = req.body ? req.body : {};
-  emailValidation(req.body.email);
+  emailValidation(user.email);
   userService.signin(user).then((signedInUser) => {
     sessionManager.generateTokenAccess(signedInUser).then((tokenAccess) => {
       res.status(200);
@@ -67,15 +71,6 @@ exports.signin = (req, res, next) => {
       res.set(sessionManager.HEADER_NAME, tokenAccess.token);
       res.end();
     });
-  }).catch((err) => {
-    next(err);
-  });
-};
-
-exports.signout = (req, res, next) => {
-  userService.signout(req.user).then((signedOutUser) => {
-    res.status(200);
-    res.end();
   }).catch((err) => {
     next(err);
   });
@@ -102,6 +97,26 @@ exports.list = (req, res, next) => {
   const offset = req.query.offset || 0;
   userService.listAll(limit, offset).then((users) => {
     res.jsonp(users);
+  }).catch((err) => {
+    next(err);
+  });
+};
+
+exports.signout = (req, res, next) => {
+  userService.signout(req.user).then((signedOutUser) => {
+    res.status(200);
+    res.end();
+  }).catch((err) => {
+    next(err);
+  });
+};
+
+exports.createAdmin = (req, res, next) => {
+  const newUser = req.body;
+  userValidation(newUser);
+  userService.createOrUpdate(newUser, { isAdmin: true }).then((user) => {
+    res.status(201);
+    res.send(user);
   }).catch((err) => {
     next(err);
   });

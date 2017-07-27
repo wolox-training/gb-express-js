@@ -9,6 +9,11 @@ const successfulLogin = (cb) => {
     .post('/users/sessions')
     .send({ email: 'test@wolox.com.ar', password: '123456789' });
 };
+const successfulLoginNotAdmin = (cb) => {
+  return chai.request(server)
+    .post('/users/sessions')
+    .send({ email: '2test2@wolox.com.ar', password: '123456789' });
+};
 
 describe('users controller', () => {
   describe('/users POST', () => {
@@ -210,6 +215,50 @@ describe('users controller', () => {
       });
     });
   });
-
+  describe('/admin/users POST', () => {
+    it('should fail because the user is not an admin', (done) => {
+      successfulLoginNotAdmin().then((res) => {
+        chai.request(server)
+          .post('/admin/users/')
+          .set(sessionManager.HEADER_NAME, res.headers.authorization)
+          .send({
+            firstName: 'xxxxxx', lastName: 'zzzzzzzzz',
+            password: '1234', email: '123456@wolox.com.ar'
+          })
+          .catch((err) => {
+            err.response.should.be.json;
+            err.response.body.should.have.property('error');
+            err.response.body.error.should.equal('User is not allowed');
+            err.should.have.status(401);
+          })
+          .then((response) => {
+            done();
+          });
+      }).catch((err) => {
+        done(err);
+      });
+    });
+    it('should be successful creating a new admin', (done) => {
+      successfulLogin().then((res) => {
+        chai.request(server)
+          .post('/admin/users/')
+          .set(sessionManager.HEADER_NAME, res.headers.authorization)
+          .send({
+            firstName: 'xxxxxx', lastName: 'zzzzzzzzz',
+            password: '12345678910', email: '123456@wolox.com.ar'
+          })
+          .then((response) => {
+            response.body.isAdmin.should.be.true;
+            response.should.have.status(201);
+            dictum.chai(response);
+          })
+          .then(() => {
+            done();
+          });
+      }).catch((err) => {
+        done(err);
+      });
+    });
+  });
 });
 
