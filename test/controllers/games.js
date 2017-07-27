@@ -139,7 +139,7 @@ describe('games controller', () => {
   });
   describe('/games/:gameId/match POST', () => {
     it('should fail because of missing assertions attribute', (done) => {
-      utils.successfulLogin().then((res) => {
+      successfulLogin().then((res) => {
         chai.request(server)
           .post('/games/2/match')
           .set(sessionManager.HEADER_NAME, res.headers.authorization)
@@ -172,7 +172,7 @@ describe('games controller', () => {
         });
     });
     it('should be successful creating a new match', (done) => {
-      utils.successfulLogin().then((res) => {
+      successfulLogin().then((res) => {
         chai.request(server)
           .post('/games/2/match')
           .set(sessionManager.HEADER_NAME, res.headers.authorization)
@@ -180,7 +180,10 @@ describe('games controller', () => {
             assertions: '7'
           })
           .then((response) => {
-            response.should.have.status(200);
+            response.body.should.have.property('game_id').and.be.equal(2);
+            response.body.should.have.property('user_id').and.be.equal(1);
+            response.body.should.have.property('assertions').and.be.equal(7);
+            response.should.have.status(201);
             dictum.chai(response);
           })
           .then(() => {
