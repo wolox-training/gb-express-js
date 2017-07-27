@@ -6,3 +6,9 @@ exports.create = (game) => {
     throw errors.defaultError(err.message);
   });
 };
+
+exports.listAll = (limit, offset) => {
+  return orm.models.game.findAll({ limit, offset }).catch((err) => {
+    throw errors.defaultError(err.message);
+  });
+};

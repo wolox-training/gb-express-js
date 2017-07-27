@@ -14,5 +14,6 @@ exports.init = (app) => {
 
   // Game
   app.post('/games', [auth.isAuthenticated, auth.isAdmin], games.createGame);
+  app.get('/games', [auth.isAuthenticated], games.list);
 
 };

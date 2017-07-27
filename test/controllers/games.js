@@ -63,4 +63,78 @@ describe('games controller', () => {
       });
     });
   });
+  describe('/games GET', () => {
+    it('should be successful getting games list', (done) => {
+      successfulLogin().then((res) => {
+        chai.request(server)
+          .get('/games')
+          .set(sessionManager.HEADER_NAME, res.headers.authorization)
+          .send()
+          .then((response) => {
+            response.should.have.status(200);
+            response.body.should.be.a('array');
+            dictum.chai(response);
+          })
+          .then(() => {
+            done();
+          });
+      });
+    });
+    it('should be successful getting the list with 3 games', (done) => {
+      successfulLogin().then((res) => {
+        chai.request(server)
+          .get('/games?limit=3')
+          .set(sessionManager.HEADER_NAME, res.headers.authorization)
+          .send()
+          .then((response) => {
+            response.should.have.status(200);
+            response.body.should.be.a('array');
+            response.body.should.have.lengthOf(3);
+            dictum.chai(response);
+          })
+          .then(() => {
+            done();
+          });
+      }).catch((err) => {
+        done(err);
+      });
+    });
+    it('should be successful getting the list with only 1 game because of offset', (done) => {
+      successfulLogin().then((res) => {
+        chai.request(server)
+          .get('/games?offset=3')
+          .set(sessionManager.HEADER_NAME, res.headers.authorization)
+          .send()
+          .then((response) => {
+            response.should.have.status(200);
+            response.body.should.be.a('array');
+            response.body.should.have.lengthOf(1);
+            dictum.chai(response);
+          })
+          .then(() => {
+            done();
+          });
+      }).catch((err) => {
+        done(err);
+      });
+    });
+    it('should fail because of missing auth token', (done) => {
+      successfulLogin().then((res) => {
+        chai.request(server)
+          .get('/games')
+          .send()
+          .catch((err) => {
+            err.response.should.be.json;
+            err.response.body.should.have.property('error');
+            err.response.body.error.should.equal('User is not logged in');
+            err.should.have.status(401);
+          })
+          .then((response) => {
+            done();
+          });
+      }).catch((err) => {
+        done(err);
+      });
+    });
+  });
 });

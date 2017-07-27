@@ -36,6 +36,22 @@ exports.execute = (db) => {
         authenticationCode,
         isAdmin: false
       }));
+      data.push(db.models.game.create({
+        name: 'Age of Empires I',
+        score: 100
+      }));
+      data.push(db.models.game.create({
+        name: 'Age of Empires II',
+        score: 125
+      }));
+      data.push(db.models.game.create({
+        name: 'Age of Empires III',
+        score: 150
+      }));
+      data.push(db.models.game.create({
+        name: 'Age of Empires IV',
+        score: 175
+      }));
       return Promise.all(data);
     });
   });
