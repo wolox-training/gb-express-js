@@ -1,16 +1,6 @@
 const matchesService = require('../services/matches'),
-  nodemailer = require('nodemailer'),
-  config = require('./../../config'),
+  emailSender = require('../services/emailSender'),
   errors = require('../errors');
-
-const transporter = nodemailer.createTransport({
-  host: config.common.mailer.host || 'smtp.mailtrap.io',
-  port: config.common.mailer.port || 2525,
-  auth: {
-    user: config.common.mailer.auth.user || 'b3153d829ec625',
-    pass: config.common.mailer.auth.pass || '37818ff837057d'
-  }
-});
 
 const gameIdValidation = (gameId) => {
   if (!gameId) {
@@ -65,7 +55,6 @@ exports.getMatchHistory = (req, res, next) => {
   });
 };
 
-
 exports.getUserHistory = (req, res, next) => {
   const user = req.user;
   if (!user.isAdmin && parseInt(req.params.user_id) !== user.id) {
@@ -78,7 +67,7 @@ exports.getUserHistory = (req, res, next) => {
         subject: `Matches list for user_id: ${req.params.user_id}`,
         html: matchesArrayToHtml(history)
       };
-      transporter.sendMail(mailOptions);
+      emailSender.sendMail(mailOptions);
       res.send(history);
     }).catch((err) => {
       next(err);
