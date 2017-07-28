@@ -52,7 +52,24 @@ exports.execute = (db) => {
         name: 'Age of Empires IV',
         score: 175
       }));
-      return Promise.all(data);
+      return Promise.all(data).then(() => {
+        data.push(db.models.match.create({
+          game_id: 2,
+          user_id: 1,
+          assertions: 6
+        }));
+        data.push(db.models.match.create({
+          game_id: 2,
+          user_id: 2,
+          assertions: 10
+        }));
+        data.push(db.models.match.create({
+          game_id: 1,
+          user_id: 1,
+          assertions: 3
+        }));
+        return Promise.all(data);
+      });
     });
   });
 };

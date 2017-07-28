@@ -1,10 +1,14 @@
 const matchesService = require('../services/matches'),
   errors = require('../errors');
 
-const matchValidation = (match) => {
-  if (!match.game_id) {
+const gameIdValidation = (gameId) => {
+  if (!gameId) {
     throw errors.validationError('Game_id is missing');
   }
+};
+
+const matchValidation = (match) => {
+  gameIdValidation(match.game_id);
   if (!match.assertions) {
     throw errors.validationError('Assertions value is missing');
   }
@@ -20,6 +24,18 @@ exports.createMatch = (req, res, next) => {
   matchesService.create(match).then((createdMatch) => {
     res.status(201);
     res.send(createdMatch);
+  }).catch((err) => {
+    next(err);
+  });
+};
+
+exports.getMatchHistory = (req, res, next) => {
+  const limit = req.query.limit || 5;
+  const offset = req.query.offset || 0;
+  const gameId = req.params.game_id;
+  gameIdValidation(gameId);
+  matchesService.getHistory(gameId, limit, offset).then((history) => {
+    res.jsonp(history);
   }).catch((err) => {
     next(err);
   });

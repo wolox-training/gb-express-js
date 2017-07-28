@@ -6,3 +6,9 @@ exports.create = (match) => {
     throw errors.defaultError(err.message);
   });
 };
+
+exports.getHistory = (gameId, limit, offset) => {
+  return orm.models.match.findAll({ limit, offset, where: { game_id: gameId } }).catch((err) => {
+    throw errors.defaultError(err.message);
+  });
+};
