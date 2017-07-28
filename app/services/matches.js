@@ -12,3 +12,9 @@ exports.getHistory = (gameId, limit, offset) => {
     throw errors.defaultError(err.message);
   });
 };
+
+exports.getUserHistory = (userId) => {
+  return orm.models.match.findAll({ where: { user_id: userId } }).catch((err) => {
+    throw errors.defaultError(err.message);
+  });
+};
