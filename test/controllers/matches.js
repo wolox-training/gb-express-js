@@ -2,7 +2,9 @@ const chai = require('chai'),
   dictum = require('dictum.js'),
   server = require('./../../app'),
   sessionManager = require('./../../app/services/sessionManager'),
+  matchesMailer = require('./../../app/services/matchesMailer'),
   { successfulLogin, successfulLoginNotAdmin } = require('./../utils'),
+  sinon = require('sinon'),
   should = chai.should();
 
 describe('matches controller', () => {
@@ -132,7 +134,8 @@ describe('matches controller', () => {
     });
   });
   describe('/users/:userId/matches/emailSummary GET', () => {
-    it('should be successful getting the list of matches by user', (done) => {
+    it('should be successful emailing the list of matches by user', (done) => {
+      const sendUserHistory = sinon.spy(matchesMailer, 'sendUserHistory');
       successfulLogin().then((res) => {
         chai.request(server)
           .get('/users/1/matches/emailSummary')
@@ -140,8 +143,28 @@ describe('matches controller', () => {
           .send()
           .then((response) => {
             response.should.have.status(200);
-            response.body.should.be.a('array');
-            response.body.should.have.lengthOf(2);
+            sendUserHistory.restore();
+            sinon.assert.calledOnce(sendUserHistory);
+            dictum.chai(response);
+          })
+          .then(() => {
+            done();
+          });
+      }).catch((err) => {
+        done(err);
+      });
+    });
+    it('should be successful emailing the requested user history without being admin', (done) => {
+      const sendUserHistory = sinon.spy(matchesMailer, 'sendUserHistory');
+      successfulLoginNotAdmin().then((res) => {
+        chai.request(server)
+          .get('/users/2/matches/emailSummary')
+          .set(sessionManager.HEADER_NAME, res.headers.authorization)
+          .send()
+          .then((response) => {
+            response.should.have.status(200);
+            sendUserHistory.restore();
+            sinon.assert.calledOnce(sendUserHistory);
             dictum.chai(response);
           })
           .then(() => {
@@ -152,6 +175,7 @@ describe('matches controller', () => {
       });
     });
     it('should fail because user is not admin and is requesting for anothed user_id', (done) => {
+      const sendUserHistory = sinon.spy(matchesMailer, 'sendUserHistory');
       successfulLoginNotAdmin().then((res) => {
         chai.request(server)
           .get('/users/1/matches/emailSummary')
@@ -161,6 +185,7 @@ describe('matches controller', () => {
             err.response.should.be.json;
             err.response.body.error.should.equal('User is not allowed');
             err.response.body.should.have.property('error');
+            sinon.assert.notCalled(sendUserHistory);
             err.should.have.status(401);
           })
           .then(() => {
@@ -170,3 +195,4 @@ describe('matches controller', () => {
     });
   });
 });
+

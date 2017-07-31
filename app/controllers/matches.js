@@ -1,5 +1,5 @@
 const matchesService = require('../services/matches'),
-  emailSender = require('../services/emailSender'),
+  matchesMailer = require('../services/matchesMailer'),
   errors = require('../errors');
 
 const gameIdValidation = (gameId) => {
@@ -13,19 +13,6 @@ const matchValidation = (match) => {
   if (!match.assertions) {
     throw errors.validationError('Assertions value is missing');
   }
-};
-
-const matchesArrayToHtml = (array) => {
-  let html = '';
-  array.forEach((element) => {
-    html += `<ul>
-    <li> <b>user_id:</b> ${element.user_id} </li>
-    <li> <b>game_id:</b> ${element.game_id} </li>
-    <li> <b>assertions:</b> ${element.assertions} </li>
-    </ul>
-    </hr>`;
-  });
-  return html;
 };
 
 exports.createMatch = (req, res, next) => {
@@ -55,22 +42,12 @@ exports.getMatchHistory = (req, res, next) => {
   });
 };
 
-exports.getUserHistory = (req, res, next) => {
+exports.sendMailOfUserHistory = (req, res, next) => {
   const user = req.user;
   if (!user.isAdmin && parseInt(req.params.user_id) !== user.id) {
     next(errors.noAuthorizationError('User is not allowed'));
   } else {
-    matchesService.getUserHistory(req.params.user_id).then((history) => {
-      const mailOptions = {
-        from: '"WoloxLand-Dev" <431fd78de2-a99c67@inbox.mailtrap.io>',
-        to: user.email,
-        subject: `Matches list for user_id: ${req.params.user_id}`,
-        html: matchesArrayToHtml(history)
-      };
-      emailSender.sendMail(mailOptions);
-      res.send(history);
-    }).catch((err) => {
-      next(err);
-    });
+    matchesMailer.sendUserHistory(user, req.params.user_id);
+    res.send('Sending email');
   }
 };

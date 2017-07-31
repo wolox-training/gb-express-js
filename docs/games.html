@@ -1,0 +1,161 @@
+<html><head><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" /><script src="https://code.jquery.com/jquery-1.12.2.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script><style> pre { width: 95%; } </style></head><body><div class="container"><div class="jumbotron"><h1>Games</h1></div><div class="panel panel-default"><div class="panel-heading" role="tab" id="heading-games-POST"><h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="true" aria-controls="collapse-games-POST" href="#collapse-games-POST">POST /games</a></h4></div><div id="collapse-games-POST" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-games-POST"><div class="panel-body"><h4>Request Data</h4><div class="container"><h5>Headers</h5><pre>{
+  "authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdXRoZW50aWNhdGlvbkNvZGUiOiIkMmEkMTAkeHpoSUhCbzRzaDBNeU51aHYwSEZJLiIsIm1heGltdW1Vc2VmdWxEYXRlIjoiMjAxNy0wOC0zMFQyMDoxMToyNy4zODhaIiwiZXhwaXJhdGlvbkRhdGUiOiIyMDE3LTA4LTAyVDIwOjExOjI3LjM4OFoiLCJpZCI6MSwicmVuZXdJZCI6IiQyYSQxMCQzT3d5aGtram1xcjlnR1htZkdGcUUuIn0.xxKeLg2WcD96k81N_XGt-gH2NMNIn4boojju7uPan3o",
+  "content-type": "application/json",
+  "content-length": 38
+}</pre><h5>Body</h5><pre>{
+  "name": "Counter strike",
+  "score": "50"
+}</pre></div></div><div class="panel-body"><h4>Response Data</h4><div class="container"><h5>Status: 201</h5><h5>Headers</h5><pre>{
+  "authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdXRoZW50aWNhdGlvbkNvZGUiOiIkMmEkMTAkeHpoSUhCbzRzaDBNeU51aHYwSEZJLiIsIm1heGltdW1Vc2VmdWxEYXRlIjoiMjAxNy0wOC0zMFQyMDoxMToyNy4zODhaIiwiZXhwaXJhdGlvbkRhdGUiOiIyMDE3LTA4LTAyVDIwOjExOjI3LjM4OFoiLCJpZCI6MSwicmVuZXdJZCI6IiQyYSQxMCQzT3d5aGtram1xcjlnR1htZkdGcUUuIn0.xxKeLg2WcD96k81N_XGt-gH2NMNIn4boojju7uPan3o",
+  "content-type": "application/json",
+  "content-length": 38
+}</pre><h5>Body</h5><pre>{
+  "id": 5,
+  "name": "Counter strike",
+  "score": 50,
+  "updatedAt": "2017-07-31T20:11:27.401Z",
+  "createdAt": "2017-07-31T20:11:27.401Z"
+}</pre></div></div></div></div><div class="panel panel-default"><div class="panel-heading" role="tab" id="heading-games-GET"><h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="true" aria-controls="collapse-games-GET" href="#collapse-games-GET">GET /games</a></h4></div><div id="collapse-games-GET" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-games-GET"><div class="panel-body"><h4>Request Data</h4><div class="container"><h5>Headers</h5><pre>{
+  "authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdXRoZW50aWNhdGlvbkNvZGUiOiIkMmEkMTAkUElIUi5ZeWcxay5ERm9sd2p1UkZxTyIsIm1heGltdW1Vc2VmdWxEYXRlIjoiMjAxNy0wOC0zMFQyMDoxMToyOC4xMjVaIiwiZXhwaXJhdGlvbkRhdGUiOiIyMDE3LTA4LTAyVDIwOjExOjI4LjEyNloiLCJpZCI6MSwicmVuZXdJZCI6IiQyYSQxMCRXL05kSW0yamlscWIvOUR5ZGFLTGllIn0.52onV9rW3yPDomMRhTeRTgOSYoQEu8b-onHsBgxMkP4"
+}</pre></div></div><div class="panel-body"><h4>Response Data</h4><div class="container"><h5>Status: 200</h5><h5>Headers</h5><pre>{
+  "authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdXRoZW50aWNhdGlvbkNvZGUiOiIkMmEkMTAkUElIUi5ZeWcxay5ERm9sd2p1UkZxTyIsIm1heGltdW1Vc2VmdWxEYXRlIjoiMjAxNy0wOC0zMFQyMDoxMToyOC4xMjVaIiwiZXhwaXJhdGlvbkRhdGUiOiIyMDE3LTA4LTAyVDIwOjExOjI4LjEyNloiLCJpZCI6MSwicmVuZXdJZCI6IiQyYSQxMCRXL05kSW0yamlscWIvOUR5ZGFLTGllIn0.52onV9rW3yPDomMRhTeRTgOSYoQEu8b-onHsBgxMkP4"
+}</pre><h5>Body</h5><pre>[
+  {
+    "id": 1,
+    "name": "Age of Empires I",
+    "score": 100,
+    "createdAt": "2017-07-31T20:11:27.891Z",
+    "updatedAt": "2017-07-31T20:11:27.891Z"
+  },
+  {
+    "id": 2,
+    "name": "Age of Empires II",
+    "score": 125,
+    "createdAt": "2017-07-31T20:11:27.891Z",
+    "updatedAt": "2017-07-31T20:11:27.891Z"
+  },
+  {
+    "id": 3,
+    "name": "Age of Empires III",
+    "score": 150,
+    "createdAt": "2017-07-31T20:11:27.892Z",
+    "updatedAt": "2017-07-31T20:11:27.892Z"
+  },
+  {
+    "id": 4,
+    "name": "Age of Empires IV",
+    "score": 175,
+    "createdAt": "2017-07-31T20:11:27.892Z",
+    "updatedAt": "2017-07-31T20:11:27.892Z"
+  }
+]</pre></div></div></div></div><div class="panel panel-default"><div class="panel-heading" role="tab" id="heading-games-GET"><h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="true" aria-controls="collapse-games-GET" href="#collapse-games-GET">GET /games?limit=3</a></h4></div><div id="collapse-games-GET" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-games-GET"><div class="panel-body"><h4>Request Data</h4><div class="container"><h5>Headers</h5><pre>{
+  "authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdXRoZW50aWNhdGlvbkNvZGUiOiIkMmEkMTAkNHJNdHRWcFpKMlBvMjU1bWV4MTRWLiIsIm1heGltdW1Vc2VmdWxEYXRlIjoiMjAxNy0wOC0zMFQyMDoxMToyOC44OTRaIiwiZXhwaXJhdGlvbkRhdGUiOiIyMDE3LTA4LTAyVDIwOjExOjI4Ljg5NFoiLCJpZCI6MiwicmVuZXdJZCI6IiQyYSQxMCR1eThtMTczMG1YekxBYnRDSnhST0JPIn0.-PHz9IGwrgRUnysu0EhIoE5B0ofuMc3rC_s8uWDL9ls"
+}</pre></div></div><div class="panel-body"><h4>Response Data</h4><div class="container"><h5>Status: 200</h5><h5>Headers</h5><pre>{
+  "authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdXRoZW50aWNhdGlvbkNvZGUiOiIkMmEkMTAkNHJNdHRWcFpKMlBvMjU1bWV4MTRWLiIsIm1heGltdW1Vc2VmdWxEYXRlIjoiMjAxNy0wOC0zMFQyMDoxMToyOC44OTRaIiwiZXhwaXJhdGlvbkRhdGUiOiIyMDE3LTA4LTAyVDIwOjExOjI4Ljg5NFoiLCJpZCI6MiwicmVuZXdJZCI6IiQyYSQxMCR1eThtMTczMG1YekxBYnRDSnhST0JPIn0.-PHz9IGwrgRUnysu0EhIoE5B0ofuMc3rC_s8uWDL9ls"
+}</pre><h5>Body</h5><pre>[
+  {
+    "id": 1,
+    "name": "Age of Empires I",
+    "score": 100,
+    "createdAt": "2017-07-31T20:11:28.654Z",
+    "updatedAt": "2017-07-31T20:11:28.654Z"
+  },
+  {
+    "id": 2,
+    "name": "Age of Empires II",
+    "score": 125,
+    "createdAt": "2017-07-31T20:11:28.655Z",
+    "updatedAt": "2017-07-31T20:11:28.655Z"
+  },
+  {
+    "id": 3,
+    "name": "Age of Empires III",
+    "score": 150,
+    "createdAt": "2017-07-31T20:11:28.655Z",
+    "updatedAt": "2017-07-31T20:11:28.655Z"
+  }
+]</pre></div></div></div></div><div class="panel panel-default"><div class="panel-heading" role="tab" id="heading-games-GET"><h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="true" aria-controls="collapse-games-GET" href="#collapse-games-GET">GET /games?offset=3</a></h4></div><div id="collapse-games-GET" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-games-GET"><div class="panel-body"><h4>Request Data</h4><div class="container"><h5>Headers</h5><pre>{
+  "authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdXRoZW50aWNhdGlvbkNvZGUiOiIkMmEkMTAkME8weS9nLmcxdEZ5VENCZkliZDQzdSIsIm1heGltdW1Vc2VmdWxEYXRlIjoiMjAxNy0wOC0zMFQyMDoxMToyOS42OTRaIiwiZXhwaXJhdGlvbkRhdGUiOiIyMDE3LTA4LTAyVDIwOjExOjI5LjY5NFoiLCJpZCI6MSwicmVuZXdJZCI6IiQyYSQxMCRhWG55WXJqUWwvR1VHS2lSVDVzMFcuIn0.WflsL_dNlS4ImC85AH4YFO8VnBqTdBpbT-Hh2mzoBWU"
+}</pre></div></div><div class="panel-body"><h4>Response Data</h4><div class="container"><h5>Status: 200</h5><h5>Headers</h5><pre>{
+  "authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdXRoZW50aWNhdGlvbkNvZGUiOiIkMmEkMTAkME8weS9nLmcxdEZ5VENCZkliZDQzdSIsIm1heGltdW1Vc2VmdWxEYXRlIjoiMjAxNy0wOC0zMFQyMDoxMToyOS42OTRaIiwiZXhwaXJhdGlvbkRhdGUiOiIyMDE3LTA4LTAyVDIwOjExOjI5LjY5NFoiLCJpZCI6MSwicmVuZXdJZCI6IiQyYSQxMCRhWG55WXJqUWwvR1VHS2lSVDVzMFcuIn0.WflsL_dNlS4ImC85AH4YFO8VnBqTdBpbT-Hh2mzoBWU"
+}</pre><h5>Body</h5><pre>[
+  {
+    "id": 4,
+    "name": "Age of Empires IV",
+    "score": 175,
+    "createdAt": "2017-07-31T20:11:29.485Z",
+    "updatedAt": "2017-07-31T20:11:29.485Z"
+  }
+]</pre></div></div></div></div><div class="panel panel-default"><div class="panel-heading" role="tab" id="heading-games-2-match-POST"><h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="true" aria-controls="collapse-games-2-match-POST" href="#collapse-games-2-match-POST">POST /games/2/match</a></h4></div><div id="collapse-games-2-match-POST" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-games-2-match-POST"><div class="panel-body"><h4>Request Data</h4><div class="container"><h5>Headers</h5><pre>{
+  "authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdXRoZW50aWNhdGlvbkNvZGUiOiIkMmEkMTAkcnMua093SlNxa2RhZlBLTzl5UTNDZSIsIm1heGltdW1Vc2VmdWxEYXRlIjoiMjAxNy0wOC0zMFQyMDoxMTozMi4xOTRaIiwiZXhwaXJhdGlvbkRhdGUiOiIyMDE3LTA4LTAyVDIwOjExOjMyLjE5NFoiLCJpZCI6MSwicmVuZXdJZCI6IiQyYSQxMCQydU9RSGdEUGpKVS9jdi9Ca1JMQlNPIn0.TR1jdzpW0q5IBn0HIfPIFaBOBQiziv7b-uQp_KfZeKw",
+  "content-type": "application/json",
+  "content-length": 18
+}</pre><h5>Body</h5><pre>{
+  "assertions": "7"
+}</pre></div></div><div class="panel-body"><h4>Response Data</h4><div class="container"><h5>Status: 201</h5><h5>Headers</h5><pre>{
+  "authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdXRoZW50aWNhdGlvbkNvZGUiOiIkMmEkMTAkcnMua093SlNxa2RhZlBLTzl5UTNDZSIsIm1heGltdW1Vc2VmdWxEYXRlIjoiMjAxNy0wOC0zMFQyMDoxMTozMi4xOTRaIiwiZXhwaXJhdGlvbkRhdGUiOiIyMDE3LTA4LTAyVDIwOjExOjMyLjE5NFoiLCJpZCI6MSwicmVuZXdJZCI6IiQyYSQxMCQydU9RSGdEUGpKVS9jdi9Ca1JMQlNPIn0.TR1jdzpW0q5IBn0HIfPIFaBOBQiziv7b-uQp_KfZeKw",
+  "content-type": "application/json",
+  "content-length": 18
+}</pre><h5>Body</h5><pre>{
+  "id": 4,
+  "user_id": 1,
+  "game_id": 2,
+  "assertions": 7,
+  "updatedAt": "2017-07-31T20:11:32.202Z",
+  "createdAt": "2017-07-31T20:11:32.202Z"
+}</pre></div></div></div></div><div class="panel panel-default"><div class="panel-heading" role="tab" id="heading-games-2-match-GET"><h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="true" aria-controls="collapse-games-2-match-GET" href="#collapse-games-2-match-GET">GET /games/2/match</a></h4></div><div id="collapse-games-2-match-GET" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-games-2-match-GET"><div class="panel-body"><h4>Request Data</h4><div class="container"><h5>Headers</h5><pre>{
+  "authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdXRoZW50aWNhdGlvbkNvZGUiOiIkMmEkMTAkek5iWHZHbjdsM292alBEcE9JNGFjLiIsIm1heGltdW1Vc2VmdWxEYXRlIjoiMjAxNy0wOC0zMFQyMDoxMTozMi44OThaIiwiZXhwaXJhdGlvbkRhdGUiOiIyMDE3LTA4LTAyVDIwOjExOjMyLjg5OFoiLCJpZCI6MSwicmVuZXdJZCI6IiQyYSQxMCR2b0Q0NUh1OVBvRDFjSlc1R1Y1WXdlIn0.vFvSgpylk24zN89_ZxWRGAa4Kj-s7kJPCZT54HiWoXw"
+}</pre></div></div><div class="panel-body"><h4>Response Data</h4><div class="container"><h5>Status: 200</h5><h5>Headers</h5><pre>{
+  "authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdXRoZW50aWNhdGlvbkNvZGUiOiIkMmEkMTAkek5iWHZHbjdsM292alBEcE9JNGFjLiIsIm1heGltdW1Vc2VmdWxEYXRlIjoiMjAxNy0wOC0zMFQyMDoxMTozMi44OThaIiwiZXhwaXJhdGlvbkRhdGUiOiIyMDE3LTA4LTAyVDIwOjExOjMyLjg5OFoiLCJpZCI6MSwicmVuZXdJZCI6IiQyYSQxMCR2b0Q0NUh1OVBvRDFjSlc1R1Y1WXdlIn0.vFvSgpylk24zN89_ZxWRGAa4Kj-s7kJPCZT54HiWoXw"
+}</pre><h5>Body</h5><pre>[
+  {
+    "id": 1,
+    "user_id": 1,
+    "game_id": 2,
+    "assertions": 6,
+    "createdAt": "2017-07-31T20:11:32.773Z",
+    "updatedAt": "2017-07-31T20:11:32.773Z"
+  },
+  {
+    "id": 2,
+    "user_id": 2,
+    "game_id": 2,
+    "assertions": 10,
+    "createdAt": "2017-07-31T20:11:32.773Z",
+    "updatedAt": "2017-07-31T20:11:32.773Z"
+  }
+]</pre></div></div></div></div><div class="panel panel-default"><div class="panel-heading" role="tab" id="heading-games-2-match-GET"><h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="true" aria-controls="collapse-games-2-match-GET" href="#collapse-games-2-match-GET">GET /games/2/match?limit=2</a></h4></div><div id="collapse-games-2-match-GET" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-games-2-match-GET"><div class="panel-body"><h4>Request Data</h4><div class="container"><h5>Headers</h5><pre>{
+  "authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdXRoZW50aWNhdGlvbkNvZGUiOiIkMmEkMTAkV2FYWjBZZ3d3RThaZmpNb0VOaTA5dSIsIm1heGltdW1Vc2VmdWxEYXRlIjoiMjAxNy0wOC0zMFQyMDoxMTozMy44MzBaIiwiZXhwaXJhdGlvbkRhdGUiOiIyMDE3LTA4LTAyVDIwOjExOjMzLjgzMVoiLCJpZCI6MSwicmVuZXdJZCI6IiQyYSQxMCRnNlR3eWx2eHFiaGlLWWtnZzhSbGFlIn0.ePrpex3y8dTS6RARUZjc6OC74HCViibMGfcITcdHiTA"
+}</pre></div></div><div class="panel-body"><h4>Response Data</h4><div class="container"><h5>Status: 200</h5><h5>Headers</h5><pre>{
+  "authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdXRoZW50aWNhdGlvbkNvZGUiOiIkMmEkMTAkV2FYWjBZZ3d3RThaZmpNb0VOaTA5dSIsIm1heGltdW1Vc2VmdWxEYXRlIjoiMjAxNy0wOC0zMFQyMDoxMTozMy44MzBaIiwiZXhwaXJhdGlvbkRhdGUiOiIyMDE3LTA4LTAyVDIwOjExOjMzLjgzMVoiLCJpZCI6MSwicmVuZXdJZCI6IiQyYSQxMCRnNlR3eWx2eHFiaGlLWWtnZzhSbGFlIn0.ePrpex3y8dTS6RARUZjc6OC74HCViibMGfcITcdHiTA"
+}</pre><h5>Body</h5><pre>[
+  {
+    "id": 1,
+    "user_id": 1,
+    "game_id": 2,
+    "assertions": 6,
+    "createdAt": "2017-07-31T20:11:33.699Z",
+    "updatedAt": "2017-07-31T20:11:33.699Z"
+  },
+  {
+    "id": 2,
+    "user_id": 2,
+    "game_id": 2,
+    "assertions": 10,
+    "createdAt": "2017-07-31T20:11:33.699Z",
+    "updatedAt": "2017-07-31T20:11:33.699Z"
+  }
+]</pre></div></div></div></div><div class="panel panel-default"><div class="panel-heading" role="tab" id="heading-games-2-match-GET"><h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="true" aria-controls="collapse-games-2-match-GET" href="#collapse-games-2-match-GET">GET /games/2/match?offset=1</a></h4></div><div id="collapse-games-2-match-GET" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-games-2-match-GET"><div class="panel-body"><h4>Request Data</h4><div class="container"><h5>Headers</h5><pre>{
+  "authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdXRoZW50aWNhdGlvbkNvZGUiOiIkMmEkMTAkU2dhMHl0N29keWpxbHlSd2VMVGJNLiIsIm1heGltdW1Vc2VmdWxEYXRlIjoiMjAxNy0wOC0zMFQyMDoxMTozNC41NDZaIiwiZXhwaXJhdGlvbkRhdGUiOiIyMDE3LTA4LTAyVDIwOjExOjM0LjU0NloiLCJpZCI6MSwicmVuZXdJZCI6IiQyYSQxMCRlaTNrTTljektVWDRlV0p6UGlXamZ1In0.uarm_AQI5HM3c-UtNyML0z1BonXUYCePP93TQp93RX8"
+}</pre></div></div><div class="panel-body"><h4>Response Data</h4><div class="container"><h5>Status: 200</h5><h5>Headers</h5><pre>{
+  "authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdXRoZW50aWNhdGlvbkNvZGUiOiIkMmEkMTAkU2dhMHl0N29keWpxbHlSd2VMVGJNLiIsIm1heGltdW1Vc2VmdWxEYXRlIjoiMjAxNy0wOC0zMFQyMDoxMTozNC41NDZaIiwiZXhwaXJhdGlvbkRhdGUiOiIyMDE3LTA4LTAyVDIwOjExOjM0LjU0NloiLCJpZCI6MSwicmVuZXdJZCI6IiQyYSQxMCRlaTNrTTljektVWDRlV0p6UGlXamZ1In0.uarm_AQI5HM3c-UtNyML0z1BonXUYCePP93TQp93RX8"
+}</pre><h5>Body</h5><pre>[
+  {
+    "id": 2,
+    "user_id": 2,
+    "game_id": 2,
+    "assertions": 10,
+    "createdAt": "2017-07-31T20:11:34.408Z",
+    "updatedAt": "2017-07-31T20:11:34.408Z"
+  }
+]</pre></div></div></div></div></div></body></html>

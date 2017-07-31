@@ -6,8 +6,8 @@ const transporter = nodemailer.createTransport({
   host: config.common.mailer.host || 'smtp.mailtrap.io',
   port: config.common.mailer.port || 2525,
   auth: {
-    user: config.common.mailer.auth.user || 'b3153d829ec625',
-    pass: config.common.mailer.auth.pass || '37818ff837057d'
+    user: config.common.mailer.auth.user,
+    pass: config.common.mailer.auth.pass
   }
 });
 
