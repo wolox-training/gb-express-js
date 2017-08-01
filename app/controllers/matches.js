@@ -1,4 +1,5 @@
 const matchesService = require('../services/matches'),
+  matchesMailer = require('../services/matchesMailer'),
   errors = require('../errors');
 
 const gameIdValidation = (gameId) => {
@@ -39,4 +40,14 @@ exports.getMatchHistory = (req, res, next) => {
   }).catch((err) => {
     next(err);
   });
+};
+
+exports.sendMailOfUserHistory = (req, res, next) => {
+  const user = req.user;
+  if (!user.isAdmin && parseInt(req.params.user_id) !== user.id) {
+    next(errors.noAuthorizationError('User is not allowed'));
+  } else {
+    matchesMailer.sendUserHistory(user, req.params.user_id);
+    res.send('Sending email');
+  }
 };

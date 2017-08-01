@@ -12,6 +12,7 @@ exports.init = (app) => {
   app.post('/users/sessions/signout', [auth.isAuthenticated], users.signout);
   app.post('/users/sessions/renew', [auth.isAuthenticated], users.renew);
   app.post('/admin/users', [auth.isAuthenticated, auth.isAdmin], users.createAdmin);
+  app.get('/users/:user_id/matches/emailSummary', [auth.isAuthenticated], matches.sendMailOfUserHistory);
 
   // Game
   app.post('/games', [auth.isAuthenticated, auth.isAdmin], games.createGame);
